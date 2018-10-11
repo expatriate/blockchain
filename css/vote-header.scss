@@ -1,0 +1,131 @@
+.vote-header {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    align-items:center;
+    z-index: 2;
+    background: linear-gradient(to right, rgba(3,169,239,0.5) 0%,rgba(3,169,239,.1) 100%);
+
+    &__left {
+        width: 50%;
+        display: flex;
+        align-items:center;
+        height: 40px;
+        position: relative;
+
+        &--black {
+            background-color: #000000;
+        }
+    }
+
+    &__right {
+        width: 50%;
+        display: flex;
+        align-items:center;
+        height: 40px;
+        position: relative;
+
+        &--black {
+            background-color: #000000;
+        }
+    }
+
+    &__left-bg {
+        width: 200px;
+        height: 40px;
+        z-index: 1;
+        position: absolute;
+        right: -30px;
+        top: 0;
+
+        svg {
+            height: 40px;
+        }
+    }
+
+    &__right-bg {
+        width: 200px;
+        height: 40px;
+        z-index: 1;
+        position: absolute;
+        left:-30px;
+        top: 0;
+
+        svg {
+            height: 40px;
+        }
+    }
+
+    &__logo {
+        margin: 4px 8px 0px 32px;
+        flex: 1;
+        z-index: 1;
+        text-align: right;
+
+        svg {
+            width: 24px;
+        }
+
+        @media screen and (min-width: 1024px) {
+            flex: 0;
+            margin-left:24px;
+        }
+    }
+
+    &__title, &__cash{
+        font-size: 12px;
+        line-height: 12px;
+        font-family: 'AkzidenzGroteskMd';
+        color: #ffffff;
+        flex: 3;
+        z-index: 1;
+        word-break: break-word;
+    }
+
+    &__cash {
+        text-transform: uppercase;
+
+        &--amount {
+            color: #4cbbde;
+        }
+
+        &--blue {
+            color: #4f8b9e;
+        }
+    }
+
+    &__stars {
+        height: 16px;
+        padding-left: 50px;
+        flex: 2;
+        text-align: right;
+        padding-right: 10px;
+        z-index: 1;
+
+        svg {
+            height: 16px;
+        }
+    }
+
+    &__stars-title {
+        font-size: 10px;
+        line-height: 10px;
+        margin-top: 2px;
+        font-family: 'AkzidenzGroteskMd';
+        color: #ffffff;
+        flex: 2;
+        z-index: 1;
+        word-break: break-word;
+
+        &--blue {
+            color: #4f8b9e;
+        }
+
+        @media screen and (min-width: 1024px) {
+            flex: 0;
+            word-break: normal;
+            margin-right: 24px;
+        }
+    }
+}
