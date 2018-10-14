@@ -291,7 +291,7 @@ function init() {
       opacity: 1,
       transparent: true,
   });
-  var sprite = new THREE.TextureLoader().load( '../dist/img/disc.png' );
+  var sprite = new THREE.TextureLoader().load( '../../dist/img/disc.png' );
   var smaterial = new THREE.PointsMaterial( { size: 2.3, sizeAttenuation: true, map: sprite, alphaTest: 0.5, transparent: true } );
   var ssmaterial = new THREE.PointsMaterial( { size: 1.2, sizeAttenuation: true, map: sprite, alphaTest: 0.5, transparent: true } );
   //smaterial.color.setHSL( 1.0, 0.3, 0.7 );
@@ -608,8 +608,9 @@ function onDocumentTouchMove( event ) {
  function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-    camera.aspect = setSize( $('#stage').width()/ $('#stage').height());
+    camera.aspect = $('#stage').width()/ $('#stage').height();
     camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
     webGLRenderer.setSize( $('#stage').width(), $('#stage').height() );
   }
 window.onload = init;
