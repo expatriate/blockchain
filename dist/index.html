@@ -11,6 +11,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
     <script src="vendor/fullpage/fullpage.min.js"></script>
+    <script src="vendor/three.min.js"></script>
+    <script src="vendor/CanvasRenderer.js"></script>
+    <script src="vendor/Projector.js"></script>
+    <script src="vendor/SceneUtils.js"></script>
+    
+    <script src="vendor/Perlin.js"></script>
     <title>screens</title>
 </head>
 <body>
@@ -30,7 +36,9 @@
             <img src="dist/img/share.png">
         </div>
         <div class="section">
-            SPHERE
+            <div class="stage-wrapper">
+                <div id="stage" style="width: 800px; height: 600px;background: #fff"></div>
+            </div>
         </div>
         <div class="section section-about">
             <div class="section__wrapper">
@@ -300,6 +308,7 @@
         </div>
     </div>
     
+    <script src="dist/js/data.js"></script>
     <script src="dist/js/main.js"></script>
 </body>
 </html>

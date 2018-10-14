@@ -839,6 +839,21 @@ body, html {
     transition: transform 1s ease;
     transition: transform 1s ease, -webkit-transform 1s ease; }
 
+.stage-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
 .vote-header {
   display: -webkit-box;
   display: -webkit-flex;
