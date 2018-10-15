@@ -31,7 +31,7 @@ body, html {
     left: 20px;
     top: 20px;
     img, svg {
-      width: 200px;
+      width: 100px;
     }
   }
 }
@@ -118,22 +118,22 @@ body, html {
   }
 
   @media screen and (max-width: 720px) {
-    right: 60px;
-    top: 50px;
+    right: 20px;
+    top: 30px;
     left: auto;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     &__inside {
-      width: 30px;
-      top:14px;
+      width: 24px;
+      top: 8px;
        &:after {
-        width: 30px;
-        top: -12px;
+        width: 24px;
+        top: -8px;
       }
 
       &:before {
-        width: 30px;
-        bottom: -12px;
+        width: 24px;
+        bottom: -8px;
       }
     }
 
@@ -153,9 +153,10 @@ body, html {
     width: 27px;
   }
   @media screen and (max-width: 720px) {
-    right: 130px;
+    right: 60px;
+    top: 30px;
     img, svg {
-      width: 42px;
+      width: 24px;
     }
   }
 }
@@ -170,11 +171,11 @@ body, html {
     width: 24px;
   }
   @media screen and (max-width: 720px) {
-    right: 220px;
+    right: 100px;
     bottom:auto;
-    top: 50px;
+    top: 30px;
     img, svg {
-      width: 30px;
+      width: 18px;
     }
   }
 }
@@ -192,8 +193,8 @@ body, html {
     padding-right: 100px;
   }
   @media screen and (max-width: 720px) {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   &-news {
@@ -228,6 +229,11 @@ body, html {
     /* @media screen and (min-width: 1200px) {
       font-size: 2.2vh;
     } */
+
+    @media screen and (max-width: 720px) {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
   }
 
   &__text {
@@ -242,6 +248,9 @@ body, html {
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 14px;
     }
+    @media screen and (max-width: 720px) {
+      font-size: 14px;
+    }
   }
 
   &__image {
@@ -252,6 +261,12 @@ body, html {
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       margin-bottom: 46px;
     }
+
+    @media screen and (max-width: 720px) {
+      margin-bottom: 12px;
+      margin-top: 4px;
+    }
+
 
     img, svg {
       height: 104px;
@@ -272,7 +287,7 @@ body, html {
       font-size: 42px;
     }
     @media screen and (max-width: 720px) {
-      font-size: 36px;
+      font-size: 22px;
     }
     /* @media screen and (min-width: 1200px) {
       font-size: 6.75vh;
@@ -288,6 +303,9 @@ body, html {
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 17px;
+    }
+    @media screen and (max-width: 720px) {
+      font-size: 14px;
     }
     /* @media screen and (min-width: 1200px) {
       font-size: 2.2vh;
@@ -309,7 +327,7 @@ body, html {
     }
 
     @media screen and (max-width: 720px) {
-      height: 560px;
+      height: 450px;
     }
   }
   .swiper-pagination {
@@ -357,7 +375,7 @@ body, html {
   position: relative;
 
   @media screen and (max-width: 720px) {
-    margin-bottom: 42px;
+    margin-bottom: 24px;
   }
   
   &__text {
@@ -370,7 +388,7 @@ body, html {
       font-size: 48px;
     }
     @media screen and (max-width: 720px) {
-      font-size: 36px;
+      font-size: 24px;
     }
   }
   &__image {
@@ -380,7 +398,7 @@ body, html {
       margin-bottom: 12px;
     }
     @media screen and (max-width: 720px) {
-      margin-bottom: 42px;
+      margin-bottom: 12px;
     }
   }
   &--no-pad {
@@ -397,6 +415,9 @@ body, html {
   color: #3e3e3e;
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     font-size: 17px;
+  }
+  @media screen and (max-width: 720px) {
+    font-size: 14px;
   }
   /* @media screen and (min-width: 1200px) {
     font-size: 2.2vh;
@@ -438,7 +459,7 @@ body, html {
     }
     @media screen and (max-width: 720px) {
       padding: 10px 10px 20px 10px;
-      margin-top: 120px; 
+      margin-top: 80px; 
       img, svg {
         display: none;
       }
@@ -455,7 +476,7 @@ body, html {
       }
 
       @media screen and (max-width: 720px) {
-        font-size: 22px;
+        font-size: 16px;
         margin-bottom: 0px;
         padding: 18px;
       }
@@ -478,8 +499,8 @@ body, html {
         font-size: 2.65vh;
       } */
       @media screen and (max-width: 720px) {
-        font-size: 19px;
-        padding: 18px;
+        font-size: 12px;
+        padding: 0px 18px 18px 18px;
         ul {
           margin-block-start: 0px;
           margin-block-end: 0px;
@@ -555,8 +576,8 @@ body, html {
         font-size: 16px;
       }
       @media screen and (max-width: 720px) {
-        padding: 20px;
-        font-size: 18px;
+        padding: 18px;
+        font-size: 14px;
       }
     }
   }
@@ -616,6 +637,7 @@ body, html {
 
     @media screen and (max-width: 720px) {
       right: -10px;
+      padding: 10px;
     }
 
     &:hover {
@@ -778,6 +800,9 @@ body, html {
     position: absolute;
     bottom: 0;
     left: 0;
+    @media screen and (max-width: 720px) {
+        font-size: 14px;
+    }
   }
 
   margin-bottom: 80px;
@@ -816,7 +841,7 @@ body, html {
   }
   @media screen and (max-width: 720px) {
     height: 40px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     margin-left: 0px;
   }
 }
@@ -840,7 +865,10 @@ body, html {
       font-size: 17px;
     }
     @media screen and (max-width: 720px) { 
-      height: 160px;
+      height: 80px;
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid #979797;
     }
 
     &.animated-top {
@@ -849,7 +877,11 @@ body, html {
     }
   }
 
+
   margin-bottom: 32px;
+  @media screen and (max-width: 720px) { 
+    margin-bottom: 12px;
+  }
 }
 
 .submit-wrapper {
@@ -866,11 +898,18 @@ body, html {
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 36px;
     }
+    @media screen and (max-width: 720px) {
+      font-size: 24px;
+      text-align: right;
+    }
 
     &.animated-top {
       transform: translate(0, 50px);
       transition: transform 1s ease;
     }
+  }
+  @media screen and (max-width: 720px) {
+    text-align: right;
   }
 }
 
@@ -878,4 +917,16 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.mobile-hidden {
+  @media screen and (max-width: 720px) {
+      display: none!important;
+  }
+}
+.mobile-visible {
+  display: none;
+  @media screen and (max-width: 720px) {
+      display: block!important;
+  }
 }
