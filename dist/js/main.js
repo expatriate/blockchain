@@ -1,4 +1,4 @@
-var directionSlider, productSlider, maxOpened = 0;
+var directionSlider, productSlider, maxOpened = 0, menuOpened = false;
 
 $(document).ready(function() {
   $('#fullpage').fullpage({
@@ -6,6 +6,7 @@ $(document).ready(function() {
     autoScrolling:true,
     scrollHorizontally: true,
     menu: '#menu',
+    responsiveHeight: true,
     fixedElements: '#menu, #header, #footer, .mail, .share',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
     anchors:['main', 'about', 'news', 'product', 'directions', 'team', 'contacts'],
@@ -52,8 +53,13 @@ $(document).ready(function() {
     }
   });
 
-  var stageHeight = $(window).height();
-  $('#stage').css({height: stageHeight, width: stageHeight});
+  var customHeight = $(window).height();
+  var windowWidth = $(window).width();
+
+  if (windowWidth < customHeight) {
+    customHeight = windowWidth;
+  }
+  $('#stage').css({width: customHeight, height: customHeight})
 
 
 
@@ -63,13 +69,16 @@ $(document).ready(function() {
       spaceBetween: 100,
       slidesPerView: 3,
       grabCursor: false,
-      allowTouchMove: false,
+      allowTouchMove: true,
       breakpoints: {
         1200: {
           spaceBetween: 40
         },
         1400: {
           spaceBetween: 40
+        },
+        720: {
+          slidesPerView: 1,
         }
       }
   });
@@ -156,9 +165,23 @@ $(document).ready(function() {
   });
 
   $('.menu').on('click', function() {
-    $('.menu-hidden').css({display:'block'}).animate({opacity: 1}, 200);
-    $.fn.fullpage.setAllowScrolling(false);
-    startMenuAnimation();
+    if (!menuOpened) {
+      $('.menu-hidden').css({display:'block'}).animate({opacity: 1}, 200);
+      $.fn.fullpage.setAllowScrolling(false);
+      startMenuAnimation();
+      menuOpened = true;
+
+      $('.menu').addClass('opened');
+    } else {
+      $('.menu-hidden').animate({opacity: 0}, 200, function() {
+        $('.menu-hidden').css({display:'none'})
+      });
+      $.fn.fullpage.setAllowScrolling(true);
+      restoreMenuAnimation();
+      menuOpened = false;
+
+      $('.menu').removeClass('opened');
+    }
   });
 
   $('.menu-hidden__close').on('click', function() {
@@ -167,6 +190,9 @@ $(document).ready(function() {
     });
     $.fn.fullpage.setAllowScrolling(true);
     restoreMenuAnimation();
+    menuOpened = false;
+
+    $('.menu').removeClass('opened');
   });
 
   $('.menu-hidden__items').on('click', function() {
@@ -238,15 +264,22 @@ $(document).ready(function() {
       $.fn.fullpage.setAllowScrolling(true);
     }
 
-    if ($(e.target).hasClass('go-to-main')) {
+    if ($(e.target).parent().hasClass('go-to-main')) {
       $.fn.fullpage.setAllowScrolling(true);
     }
   });
 
+/*  stickyElements('.menu-link', {
+    stickiness: 5,
+    duration: 450
+  });
+*/
+
+  stickyElements('button', {stickiness: 5});
+
   //methods
   //$.fn.fullpage.setAllowScrolling(false);
 });
-
 
 
 
@@ -633,9 +666,14 @@ function onDocumentTouchMove( event ) {
     camera.aspect = $('#stage').width()/ $('#stage').height();
     camera.updateProjectionMatrix();
 
-    var stageHeight = $(window).height();
-    $('#stage').css({width: stageHeight, height: stageHeight})
-    webGLRenderer.setSize( stageHeight, stageHeight );
+    var customHeight = $(window).height();
+    var windowWidth = $(window).width();
+
+    if (windowWidth < customHeight) {
+      customHeight = windowWidth;
+    }
+    $('#stage').css({width: customHeight, height: customHeight})
+    webGLRenderer.setSize( customHeight, customHeight );
   }
 window.onload = init;
 
