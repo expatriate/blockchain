@@ -302,13 +302,15 @@ function init() {
   //var stats = initStats();
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xffffff );
+  //scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
 
   camera = new THREE.PerspectiveCamera(74, $('#stage').width() / $('#stage').height(), 0.1, 1000);
   // create a render and set the size
-  webGLRenderer = new THREE.WebGLRenderer({ antialias: true });
+  webGLRenderer = new THREE.WebGLRenderer({ antialias: true , clearAlpha: 1});
   webGLRenderer.setClearColor(new THREE.Color(0xFFFFFF, 1));
   webGLRenderer.setSize($('#stage').width(), $('#stage').height());
-  webGLRenderer.shadowMap.enabled = true;
+  //webGLRenderer.shadowMap.enabled = true;
+  webGLRenderer.setPixelRatio( window.devicePixelRatio );
 
 
   var date = new Date();
@@ -337,23 +339,83 @@ function init() {
   var lgeometry = new THREE.Geometry();
   var sgeometry = new THREE.Geometry();
   var ssgeometry = new THREE.Geometry();
+
+  function createCircleTexture(color, size) {
+    var matCanvas = document.createElement('canvas');
+    matCanvas.width = matCanvas.height = size;
+    var matContext = matCanvas.getContext('2d');
+    // create texture object from canvas.
+    var texture = new THREE.Texture(matCanvas);
+    // Draw a circle
+    var center = size / 2;
+    matContext.beginPath();
+    matContext.arc(center, center, size/2, 0, 2 * Math.PI, false);
+    matContext.closePath();
+    matContext.fillStyle = color;
+    matContext.fill();
+    // need to set needsUpdate
+    texture.needsUpdate = true;
+    // return a texture made from the canvas
+    return texture;
+  }
   
   //var positions = new Float32Array( MAX_POINTS * 3 ); // 3 vertices per point
 
   var tmaterial = new THREE.PointsMaterial({
-      color: 0xaaaaaa,
-      size: .2,
-      opacity: 1,
+      size: 0.2,
+      map: createCircleTexture('#cccccc', 64),
       transparent: true,
+      depthWrite: false,
+      alphaTest: 0.5,
+      opacity: 1,
    });
   var lmaterial = new THREE.LineBasicMaterial({
       color: 0xdddddd,
       opacity: 1,
       transparent: true,
   });
+
   var sprite = new THREE.TextureLoader().load( 'dist/img/disc.png' );
-  var smaterial = new THREE.PointsMaterial( { size: 2.3, sizeAttenuation: true, map: sprite, alphaTest: 0.5, transparent: true } );
-  var ssmaterial = new THREE.PointsMaterial( { size: 1.2, sizeAttenuation: true, map: sprite, alphaTest: 0.5, transparent: true } );
+  sprite.anisotropy = webGLRenderer.capabilities.getMaxAnisotropy();
+  smaterial = new THREE.PointsMaterial({
+    size: 2.9,
+    map: createCircleTexture('#a01d21', 64),
+    transparent: true,
+    depthWrite: false,
+    alphaTest: 0.5
+  });
+  ssmaterial = new THREE.PointsMaterial({
+    size: 1.8,
+    map: createCircleTexture('#a01d21', 64),
+    transparent: true,
+    depthWrite: false,
+    alphaTest: 0.5
+  });
+
+/*  var smaterial = new THREE.PointsMaterial( { 
+    size: 2.5, 
+    sizeAttenuation: true, 
+    map: sprite, 
+    alphaTest: 0.5, 
+    transparent: true,
+    blending: THREE.NoBlending,
+    color: 0xFFFFFF,
+    fog: false, } );
+  var ssmaterial = new THREE.PointsMaterial( { 
+    size: 2.2, 
+    sizeAttenuation: true, 
+    map: sprite, 
+    alphaTest: 0.5, 
+    transparent: true,
+    color: 0xFFFFFF,
+    blending: THREE.NoBlending,
+    fog: false, } );*/
+ 
+
+  //ssmaterial.color.setHSL( 1.0, 0.3, 0.7 );
+  //smaterial.color.setHSL( 1.0, 0.3, 0.7 );
+  //var ssmaterial = new THREE.PointsMaterial( { size: 5, color: 0xa01d21 } );
+  //var smaterial = new THREE.PointsMaterial( { size: 5, color: 0xa01d21 } );
   //smaterial.color.setHSL( 1.0, 0.3, 0.7 );
 
 
@@ -362,9 +424,10 @@ function init() {
 
   var lineCloud = new THREE.Line(lgeometry, lmaterial);
   var randomCloud = new THREE.Points(sgeometry, smaterial);
+  randomCloud.sortParticles = true;
   var randomMovingCloud = new THREE.Points(ssgeometry, ssmaterial);  
 
-  for (var i = 0; i < 250; i++ ) {
+  for (var i = 0; i < 200; i++ ) {
     var svertex = new THREE.Vector3();
     svertex.x = (Math.random() * 2 - 1);
     svertex.y = (Math.random() * 2 - 1);
