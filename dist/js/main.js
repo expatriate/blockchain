@@ -8,7 +8,7 @@ $(document).ready(function() {
     menu: '#menu',
     fixedElements: '#menu, #header, #footer, .mail, .share',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-    anchors:['main', 'about', 'news', 'product', 'directions', 'contacts'],
+    anchors:['main', 'about', 'news', 'product', 'directions', 'team', 'contacts'],
 
     onLeave: function(origin, destination, direction) {
 
@@ -47,10 +47,15 @@ $(document).ready(function() {
 
       // Disable scroll on last slide
       if (destination.isLast) {
-        //$.fn.fullpage.setAllowScrolling(false);
+        $.fn.fullpage.setAllowScrolling(false);
       }
     }
   });
+
+  var stageHeight = $(window).height();
+  $('#stage').css({height: stageHeight, width: stageHeight});
+
+
 
 
   productSlider = new Swiper('#section-product__slider', {
@@ -58,7 +63,15 @@ $(document).ready(function() {
       spaceBetween: 100,
       slidesPerView: 3,
       grabCursor: false,
-      allowTouchMove: false
+      allowTouchMove: false,
+      breakpoints: {
+        1200: {
+          spaceBetween: 40
+        },
+        1400: {
+          spaceBetween: 40
+        }
+      }
   });
 
   directionSlider = new Swiper('#section-direction__slider', {
@@ -203,7 +216,8 @@ $(document).ready(function() {
     textarea.removeClass('animated-top');
     setTimeout(function() {
       submit.removeClass('animated-top');
-    }, 200)
+    }, 200);
+    $('#menu').hide(200);
   }
 
   function restoreWritetousAnimation() {
@@ -215,9 +229,19 @@ $(document).ready(function() {
       submit.addClass('animated-top');
     }, 500);
 
+    $('#menu').show(200);
   }
 
 
+  $(document).on('click', 'a', function(e) {
+    if ($(e.target).hasClass('menu-link') && !$(e.target).hasClass('menu-link__contacts')) {
+      $.fn.fullpage.setAllowScrolling(true);
+    }
+
+    if ($(e.target).hasClass('go-to-main')) {
+      $.fn.fullpage.setAllowScrolling(true);
+    }
+  });
 
   //methods
   //$.fn.fullpage.setAllowScrolling(false);
@@ -242,12 +266,12 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xffffff );
 
-  camera = new THREE.PerspectiveCamera(75, $('#stage').width() / $('#stage').height(), 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(74, $('#stage').width() / $('#stage').height(), 0.1, 1000);
   // create a render and set the size
   webGLRenderer = new THREE.WebGLRenderer({ antialias: true });
   webGLRenderer.setClearColor(new THREE.Color(0xFFFFFF, 1));
   webGLRenderer.setSize($('#stage').width(), $('#stage').height());
-  webGLRenderer.shadowMapEnabled = true;
+  webGLRenderer.shadowMap.enabled = true;
 
 
   var date = new Date();
@@ -266,7 +290,7 @@ function init() {
   }
 
 
-  console.log(sphereVerticesArray)
+  //console.log(sphereVerticesArray)
 
   //var sphere = THREE.SceneUtils.createMultiMaterialObject(sphereGeom, []);
 
@@ -283,7 +307,6 @@ function init() {
       color: 0xaaaaaa,
       size: .2,
       opacity: 1,
-      shading: THREE.FlatShading,
       transparent: true,
    });
   var lmaterial = new THREE.LineBasicMaterial({
@@ -340,7 +363,7 @@ function init() {
   camera.position.x = 0;
   camera.position.y = 0;
   camera.position.z = 50;
-  camera.lookAt(new THREE.Vector3(0, 0, 50));
+  //camera.lookAt(new THREE.Vector3(0, 0, 55));
 
 
   //var orbitControls = new THREE.OrbitControls(camera);
@@ -357,7 +380,6 @@ function init() {
   // material
   Rmaterial = new THREE.MeshPhongMaterial({
       color: 0xffffff, 
-      shading: THREE.FlatShading,
       transparent: true,
       opacity: 0,
   });
@@ -610,7 +632,10 @@ function onDocumentTouchMove( event ) {
     windowHalfY = window.innerHeight / 2;
     camera.aspect = $('#stage').width()/ $('#stage').height();
     camera.updateProjectionMatrix();
-    webGLRenderer.setSize( $('#stage').width(), $('#stage').height() );
+
+    var stageHeight = $(window).height();
+    $('#stage').css({width: stageHeight, height: stageHeight})
+    webGLRenderer.setSize( stageHeight, stageHeight );
   }
 window.onload = init;
 
@@ -942,126 +967,4 @@ function loop() {
 
 loop();
 
-
-
 */
-
-
-
-
-
-/*
-var canvas = document.getElementById('stage');
-var ctx = canvas.getContext('2d');
-
-// even distribution on sphere
-// @link: https://en.wikibooks.org/wiki/Mathematica/Uniform_Spherical_Distribution
-// @link: https://stackoverflow.com/a/44164075
-
-// point set
-var numOfPoints = 2000, numOfPointsCount = 2000;
-var points = [], lines = [];
-
-// create points
-for (var i = 0; i < numOfPointsCount; i++) {
-  //var theta = Math.PI * i * (12 + Math.sqrt(60)) * 1/11;
-  var theta = Math.PI * i * (12 + Math.sqrt(70)) * 1/11;
-  var phi = Math.acos(2 * i / numOfPoints - 1); 
-  points.push({
-    x: Math.sin(phi) * Math.cos(theta),
-    y: Math.cos(phi),
-    z: Math.sin(phi) * Math.sin(theta),
-  });
-}
-
-// create perspective matrix
-var p = mat4.create();
-mat4.perspective(p, 30, canvas.clientWidth / canvas.clientHeight, 0, 100);
-
-// since we draw thing on canvas
-// it is using the left-handed coordinate system
-// x-axis points from left to right
-// y-axis points from up to down
-// z-axis points outward from screen
-
-// create view matrix
-var v = mat4.create();
-var eye = vec3.fromValues(1, -1, 2);
-var center = vec3.fromValues(0, 0, 0);
-var up = vec3.fromValues(0, -1, 0);
-mat4.lookAt(v, eye, center, up);
-
-// create model matrix
-var m = mat4.create();
-
-var halfWidth = canvas.clientWidth / 2;
-var halfHeight = canvas.clientHeight / 2;
-
-function loop() {
-
-  // rotate sphere by rotate its model matrix
-  mat4.rotateY(m, m, Math.PI/ 3000);
-  
-  // create pvm matrix
-  var vm = mat4.create();
-  mat4.multiply(vm, v, m);
-  var pvm = mat4.create();
-  mat4.multiply(pvm, p, vm);
-
-
-  // clear screen
-  ctx.fillStyle = "#FFFFFF";
-  ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
-  ctx.save();
-  ctx.translate(halfWidth, halfHeight);
-
-  // draw center
-  //ctx.fillStyle = "#FF0000";
-  //ctx.fillRect(0, 0, 5, 5);
-  let tempVar = 10;
-  // draw points
-  for (var i = 0; i < numOfPointsCount; i++) {
-    var point = vec3.fromValues(points[i].x, points[i].y, points[i].z);
-
-    // calculate color by depth
-    var localPoint = vec3.create();
-    vec3.transformMat4(localPoint, point, m);
-    ctx.fillStyle = "rgba(0,0,0," + ((localPoint[2] + 1) / 2) + ")";
-
-    // calculate point size
-    var pSize = (localPoint[2] + 1);
-
-    // calculate screen position by apply pvm matrix to point
-    var screenPoint = vec3.create();
-    vec3.transformMat4(screenPoint, point, pvm);
-
-    // draw point
-    ctx.fillRect(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight, pSize, pSize);
-
-    if (i + 1 < numOfPointsCount) {
-      if (i % tempVar === 0) {
-        i = i + tempVar > numOfPointsCount ? numOfPointsCount : i + tempVar;
-      }
-      var pointTo = vec3.fromValues(points[i+1].x, points[i+1].y, points[i+1].z);
-      var screenPoint_line = vec3.create();
-      vec3.transformMat4(screenPoint_line, pointTo, pvm);
-      ctx.beginPath(); 
-      // Staring point (10,45)
-      ctx.moveTo(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight);
-      // End point (180,47)
-      ctx.lineTo(screenPoint_line[0] * halfWidth, screenPoint_line[1] * halfHeight);
-      // Make the line visible
-      ctx.stroke();
-      //ctx.fillRect(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight, 20 , pSize);
-      //ctx.stroke();
-    }
-    
-  }
-
-  ctx.restore();
-
-  requestAnimationFrame(loop);
-}
-
-loop();*/

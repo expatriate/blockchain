@@ -24,6 +24,9 @@ body, html {
   img {
     width: 116px;
   }
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    left: 20px;
+  }
 }
 
 #footer {
@@ -33,6 +36,9 @@ body, html {
   left: 100px;
   img {
     width: 111px;
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    left: 20px;
   }
 
   .copy {
@@ -50,6 +56,9 @@ body, html {
   cursor: pointer;
   width: 14px;
   height: 14px;
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    left: 80px;
+  }
   &__inside {
     width: 14px;
     height: 2px;
@@ -107,8 +116,19 @@ body, html {
   padding-right: 200px;
   width: 100%;
 
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    padding-left: 200px;
+    padding-right: 100px;
+  }
+
   &-news {
 
+  }
+
+  &-menu {
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      padding-left: 100px;
+    }
   }
 
   &-details {
@@ -129,6 +149,10 @@ body, html {
     font-size: 21px;
     font-family: 'LatoBold';
     margin-bottom: 24px;
+
+    /* @media screen and (min-width: 1200px) {
+      font-size: 2.2vh;
+    } */
   }
 
   &__text {
@@ -136,12 +160,23 @@ body, html {
     font-family: 'LatoRegular';
     text-align: justify;
     color: #3e3e3e;
+
+    /* @media screen and (min-width: 1200px) and (min-height: 640px) {
+      font-size: 1.9vh;
+    } */
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 14px;
+    }
   }
 
   &__image {
     text-align: center;
     margin-top: 16px;
     margin-bottom: 96px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      margin-bottom: 46px;
+    }
 
     img {
       height: 104px;
@@ -157,6 +192,13 @@ body, html {
     font-family: 'LatoBold';
     margin-bottom: 24px;
     max-width: 1350px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 48px;
+    }
+    /* @media screen and (min-width: 1200px) {
+      font-size: 6.75vh;
+    } */
   }
 
   &__text {
@@ -165,6 +207,13 @@ body, html {
     text-align: justify;
     max-width: 1152px;
     color: #3e3e3e;
+
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 17px;
+    }
+    /* @media screen and (min-width: 1200px) {
+      font-size: 2.2vh;
+    } */
   }
 }
 
@@ -224,6 +273,12 @@ body, html {
   &__text {
     font-size: 64px;
     font-family: 'LatoBold';
+    /* @media screen and (min-width: 1200px) {
+      font-size: 6.75vh;
+    } */
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 48px;
+    }
   }
   &__image {
     margin-bottom: 58px;
@@ -244,6 +299,12 @@ body, html {
   max-width: 1164px;
   text-align: justify;
   color: #3e3e3e;
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    font-size: 17px;
+  }
+  /* @media screen and (min-width: 1200px) {
+    font-size: 2.2vh;
+  } */
 }
 
 .section-team {
@@ -266,16 +327,37 @@ body, html {
 
     opacity: 0;
 
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      padding: 48px 64px 48px 48px;
+      max-width: 700px;
+    }
+
     &__title {
       font-size: 34px;
       font-family: 'LatoBold';
       margin-bottom: 50px;
+
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        font-size: 26px;
+        margin-bottom: 36px;
+      }
+
+      /* @media screen and (min-width: 1200px) {
+        font-size: 3.5vh;
+      } */
     }
 
     &__text {
       font-size: 25px;
       font-family: 'LatoRegular';
       line-height: 1.8;
+
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        font-size: 16px;
+      }
+      /* @media screen and (min-width: 1200px) {
+        font-size: 2.65vh;
+      } */
 
       ul {
         list-style: none;
@@ -291,6 +373,9 @@ body, html {
 
     &__image {
       margin-bottom: 50px;
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        margin-bottom: 36px;
+      }
     }
   }
 
@@ -304,14 +389,26 @@ body, html {
 
     opacity: 0;
 
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      padding: 50px 45px;
+    }
+
     &__image {
       margin-bottom: 60px;
+
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        margin-bottom: 48px;
+      }
     }
 
     &__text {
       font-size: 21px;
       font-family: 'LatoRegular';
       line-height: 1.8;
+
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        font-size: 14px;
+      }
     }
   }
 }
@@ -363,8 +460,8 @@ body, html {
     color: #ffffff;
     cursor: pointer;
     position: absolute;
-    right: 0px;
-    top: 70px;
+    right: -70px;
+    top: 0px;
     padding: 25px;
     transition: all .5s ease;
 
@@ -389,6 +486,11 @@ body, html {
 
   &__menu {
     position: relative;
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      img {
+        height: 280px;
+      }
+    }
   }
 
   &__items {
@@ -404,6 +506,10 @@ body, html {
   font-family: 'LatoBold';
   font-size: 30px;
   color: #3e3e3e;
+
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    font-size: 24px;
+  }
   &__main {
     top: -27px;
     left: -70px;
@@ -412,22 +518,47 @@ body, html {
     top: -27px;
     left: 512px;
     width: 125px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: -29px;
+      left: 314px;
+    }
   }
   &__news {
     top: 62px;
     left: 456px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: 39px;
+      left: 284px;
+    }
   }
   &__directions {
     top: 293px;
     left: -145px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: 203px;
+      left: -115px;
+    }
   }
   &__product {
     top: 330px;
     left: 500px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: 203px;
+      left: 314px;
+    }
   }
   &__contacts {
     top: 409px;
     left: 232px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: 283px;
+      left: 125px;
+    }
   }
 }
 
@@ -448,11 +579,19 @@ body, html {
 
   margin-bottom: 80px;
   margin-top:60px;
+
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    margin-bottom: 48px;
+    margin-top:36px;
+    input {
+      font-size: 17px;
+    }
+  }
 }
 
 .input-holder {
   flex: 1;
-  margin-left:70px;
+  margin-left: 70px;
   overflow: hidden;
   position: relative;
   height: 40px;
@@ -483,6 +622,11 @@ body, html {
     transition: transform 1s ease;
     transform: translate(0, 0);
 
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      height: 180px;
+      font-size: 17px;
+    }
+
     &.animated-top {
       transform: translate(0, 50px);
       transition: transform 1s ease;
@@ -502,6 +646,10 @@ body, html {
     outline: none;
     transition: transform 1s ease;
     transform: translate(0, 0);
+
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 36px;
+    }
 
     &.animated-top {
       transform: translate(0, 50px);
