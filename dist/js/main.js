@@ -1,6 +1,8 @@
 var directionSlider, productSlider, maxOpened = 0, menuOpened = false;
 
 $(document).ready(function() {
+
+
   $('#fullpage').fullpage({
     //options here
     autoScrolling:true,
@@ -277,6 +279,8 @@ $(document).ready(function() {
 
   stickyElements('button', {stickiness: 5});
 
+  init();
+
   //methods
   //$.fn.fullpage.setAllowScrolling(false);
 });
@@ -440,9 +444,9 @@ function init() {
   scene.add( dot );
 
   // add subtle ambient lighting
-  var light = new THREE.AmbientLight( 0x000000 ); // soft white light
+  /*var light = new THREE.AmbientLight( 0x000000 ); // soft white light
   scene.add( light );
-
+*/
   // add spotlight for the shadows
   /*var spotLight = new THREE.DirectionalLight(0x000000);
   spotLight.position.set(0, 30, 40);
@@ -450,7 +454,7 @@ function init() {
   scene.add(spotLight);*/
 
   // add the output of the renderer to the html element
-  document.getElementById("stage").appendChild(webGLRenderer.domElement);
+  $("#stage").append(webGLRenderer.domElement);
 
   var step = 0;
   var inverter = 1;
@@ -661,21 +665,20 @@ function onDocumentTouchMove( event ) {
   }
 }
  function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    camera.aspect = $('#stage').width()/ $('#stage').height();
-    camera.updateProjectionMatrix();
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
+  camera.aspect = $('#stage').width()/ $('#stage').height();
+  camera.updateProjectionMatrix();
 
-    var customHeight = $(window).height();
-    var windowWidth = $(window).width();
+  var customHeight = $(window).height();
+  var windowWidth = $(window).width();
 
-    if (windowWidth < customHeight) {
-      customHeight = windowWidth;
-    }
-    $('#stage').css({width: customHeight, height: customHeight})
-    webGLRenderer.setSize( customHeight, customHeight );
+  if (windowWidth < customHeight) {
+    customHeight = windowWidth;
   }
-window.onload = init;
+  $('#stage').css({width: customHeight, height: customHeight})
+  webGLRenderer.setSize( customHeight, customHeight );
+}
 
 
 
