@@ -702,7 +702,6 @@ var stickyElements = (function() {
                     return t.onLeave(s);
                   },
                   move: function(s) {
-                    console.log(s)
                     return t.onMove(s);
                   }
                 }),
@@ -808,7 +807,6 @@ var stickyElements = (function() {
                     Math.abs(this.positions.deltay) <
                     this.positions.height / this.grip.y
                 };
-                //console.log(t)
               if (
                 (n.x && n.y && (this.isGripped = !0),
                 (this.positions.deltax = -(this.positions.centerx - i)),

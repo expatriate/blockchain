@@ -16,12 +16,20 @@
     <script src="vendor/Projector.js"></script>
     <script src="vendor/SceneUtils.js"></script>
     <script src="vendor/stickyelements-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/plugins/CSSPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/easing/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+
     
     <script src="vendor/Perlin.js"></script>
     <title>screens</title>
 </head>
 <body>
     <div id="fullpage">
+        <div class="follower mobile-hidden" id="foolower"></div>
+        <div class="mouse-wrapper mobile-hidden" id="mouse">
+            <div class="mouse"></div>
+        </div>
         <div id="header">
             <a href="/#main" class="go-to-main">
                 <img src="dist/img/logo.png">

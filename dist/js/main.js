@@ -2,16 +2,15 @@ var directionSlider, productSlider, maxOpened = 0, menuOpened = false;
 
 $(document).ready(function() {
 
-
   $('#fullpage').fullpage({
     //options here
     autoScrolling:true,
     scrollHorizontally: true,
     menu: '#menu',
-    responsiveHeight: true,
-    fixedElements: '#menu, #header, #footer, .mail, .share',
+    fixedElements: '#menu, #header, #footer, .mail, .share, .follower, #mouse',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
     anchors:['main', 'about', 'news', 'product', 'directions', 'team', 'contacts'],
+    recordHistory: false,
 
     onLeave: function(origin, destination, direction) {
 
@@ -51,6 +50,7 @@ $(document).ready(function() {
       // Disable scroll on last slide
       if (destination.isLast) {
         $.fn.fullpage.setAllowScrolling(false);
+        $('.mouse').hide();
       }
     }
   });
@@ -155,6 +155,7 @@ $(document).ready(function() {
   $('.mail').on('click', function() {
     $('.mail-hidden').css({display:'block'}).animate({opacity: 1}, 200);
     $.fn.fullpage.setAllowScrolling(false);
+    $('.mouse').hide();
     startWritetousAnimation();
   });
 
@@ -163,6 +164,7 @@ $(document).ready(function() {
       $('.mail-hidden').css({display:'none'})
     });
     $.fn.fullpage.setAllowScrolling(true);
+    $('.mouse').show();
     restoreWritetousAnimation();
   });
 
@@ -170,6 +172,7 @@ $(document).ready(function() {
     if (!menuOpened) {
       $('.menu-hidden').css({display:'block'}).animate({opacity: 1}, 200);
       $.fn.fullpage.setAllowScrolling(false);
+      $('.mouse').hide();
       startMenuAnimation();
       menuOpened = true;
 
@@ -179,6 +182,7 @@ $(document).ready(function() {
         $('.menu-hidden').css({display:'none'})
       });
       $.fn.fullpage.setAllowScrolling(true);
+      $('.mouse').show();
       restoreMenuAnimation();
       menuOpened = false;
 
@@ -191,6 +195,7 @@ $(document).ready(function() {
       $('.menu-hidden').css({display:'none'})
     });
     $.fn.fullpage.setAllowScrolling(true);
+    $('.mouse').show();
     restoreMenuAnimation();
     menuOpened = false;
 
@@ -264,10 +269,12 @@ $(document).ready(function() {
   $(document).on('click', 'a', function(e) {
     if ($(e.target).hasClass('menu-link') && !$(e.target).hasClass('menu-link__contacts')) {
       $.fn.fullpage.setAllowScrolling(true);
+      $('.mouse').show();
     }
 
     if ($(e.target).parent().hasClass('go-to-main')) {
       $.fn.fullpage.setAllowScrolling(true);
+      $('.mouse').show();
     }
   });
 
@@ -277,7 +284,7 @@ $(document).ready(function() {
   });
 */
 
-  stickyElements('button', {stickiness: 5});
+  stickyElements('.menu-hidden__close, .pagination-point', {stickiness: 8, duration: 0});
 
   init();
 
@@ -285,6 +292,90 @@ $(document).ready(function() {
   //$.fn.fullpage.setAllowScrolling(false);
 });
 
+/*$(document).on("mousemove touchmove", function(event) {
+  event.preventDefault();
+  if (event.originalEvent.touches) var msX = event.originalEvent.touches[0].pageX;
+  else var msX = event.pageX;
+
+  var speed = 30;
+
+  if($(window).width() < 768) {
+      speed = 10;
+  }
+  
+  diff = ((msX - stX) / winW * 100) * speed + curDiff;
+
+  //clicktype = Math.abs(msX-stX);
+
+  if(msX < stX) {
+      direction = 'left';
+  } else {
+      direction = 'right';
+  }
+
+  var centerLine = $('.work-content').offset().left;
+  
+  var minPos = Math.abs(docWidth/2 - $(".workitems .work-item" ).eq(0).outerWidth(true)/2);
+});*/
+
+/*$(document).on('mousemove', (event) => {
+  $('.follower').css({
+    left: event.clientX,
+    top: event.clientY,
+  });
+});*/
+
+/*$(document).mousemove(function(e){
+    $(".follower").css({left:e.clientX, top:e.clientY});
+});*/
+var $cursor = $('.follower');
+
+function moveCursor(e) {
+  $cursor.addClass('is-moving');
+  
+  TweenLite.to($cursor, 0.23, {
+    left: e.pageX,
+    top: e.pageY,
+    ease: Power4.easOut
+  });
+  
+  clearTimeout(timer);
+
+   var timer = setTimeout(function() {
+       $cursor.removeClass('is-moving');
+   }, 300);
+}
+
+$(window).on('mousemove', moveCursor);
+
+/*var mouseX, mouseY, moved, follower = $('.follower');
+cursorfollow();
+$(document).on("mousemove", function(e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+})
+function cursorfollow() {
+    var e = 0, s = 0;
+    setInterval(function() {
+        e += (mouseX - e) / 9,
+        s += (mouseY - s) / 9,
+        follower.css({
+            left: e - 12,
+            top: s - 12
+        })
+    }, 16);
+    $(".cur").on("mouseenter", function() {
+        follower.addClass("active"),
+        cursor.addClass("active"),
+        $(".hover").addClass("hovered"),
+        $(this).removeClass("hovered")
+    }),
+    $(".cur").on("mouseleave", function() {
+        follower.removeClass("active"),
+        cursor.removeClass("active"),
+        $".hover").removeClass("hovered")
+    })
+}*/
 
 
 

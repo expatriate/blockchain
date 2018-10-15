@@ -78,7 +78,7 @@ body, html {
   top:50%;
   left: 100px;
   z-index: 99999;
-  cursor: pointer;
+  //cursor: pointer;
   width: 14px;
   height: 14px;
   transition: all 0.4s ease;
@@ -185,7 +185,7 @@ body, html {
   z-index: 999;
   top: 50px;
   right: 100px;
-  cursor: pointer;
+  //cursor: pointer;
   img, svg {
     width: 27px;
   }
@@ -210,7 +210,7 @@ body, html {
   z-index: 999;
   bottom: 50px;
   right: 100px;
-  cursor: pointer;
+  //cursor: pointer;
   img, svg {
     width: 24px;
   }
@@ -233,6 +233,51 @@ body, html {
 }
 
 
+/* .follower {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #a01d21;
+  border-radius: 100%;
+  transition: .6s cubic-bezier(.75, -1.27, .3, 2.33) transform, .2s cubic-bezier(.75, -.27, .3, 1.33) opacity;
+  position: absolute;
+  z-index: 999999;
+  user-select: none;
+  pointer-events: none;
+  transform: translate(5px, 5px);
+} */
+.follower {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  left: 50%;
+  margin: -12px 0 0 -12px;
+  border: 2px solid #a01d21;
+  border-radius: 100px;
+  backface-visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  z-index: 999999;
+  transition: transform 0.3s ease-out;
+
+/*   &.is-moving {
+    transform: scale(0.7);
+  } */
+}
+body, html, .section, a , input, button, textarea {
+  cursor: url('../img/cursor.svg'), auto;
+}
+
+a {
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+  &:hover {
+    color: #a01d21;
+    border-bottom: 2px solid #a01d21;
+    transition: all 0.6s ease;
+  }
+}
 
 
 .section {
@@ -466,7 +511,7 @@ body, html {
     right: 10px;
     top:0px;
     z-index: 9999;
-    cursor: pointer;
+    //cursor: pointer;
   }
 }
 
@@ -753,7 +798,7 @@ body, html {
   a {
     text-decoration: none;
     color: #000;
-    cursor: pointer;
+    //cursor: pointer;
     transition: all 0.4s ease;
     border-bottom: 3px solid transparent;
     &:hover {
@@ -789,7 +834,7 @@ body, html {
     line-height: 20px;
     background: #d8d8d8;
     color: #ffffff;
-    cursor: pointer;
+    //cursor: pointer;
     position: absolute;
     right: -70px;
     top: 0px;
@@ -1156,4 +1201,206 @@ body, html {
   @media screen and (max-width: 720px) {
       display: block!important;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* @import url(https://fonts.googleapis.com/css?family=Cabin); */
+
+$colorBg: #222a30;
+$colorOutline: #d6d6d6;
+$colorOutlineF: #ffffff;
+$colorOutlineFade: #4e5559;
+
+$widthMouse: 30px;
+$heightMouse: 56px;
+$borderMouse: 4px;
+
+$posMouse: 10px;
+$posText: 2px;
+
+$sizeTrackball: 4px;
+$posTrackball: 16px;
+$shrinkTrackball: 0.2;
+
+$animDuration: 5s;
+
+@mixin bgGradient {
+  background:
+    $colorOutlineFade
+    linear-gradient(
+      transparent 0%,
+      transparent 50%,
+      $colorOutline 50%,
+      $colorOutline 100%
+    );
+}
+
+.mouse-wrapper {
+  height: 80px;
+  /* background-color: aqua; */
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+}
+
+/* p {
+  margin-top: 50px;
+  font-family: "Cabin", sans-serif;
+  letter-spacing: 12px;
+  text-indent: 12px;
+  color: $colorOutline;
+  animation: 
+    colorText $animDuration ease-out infinite,
+    nudgeText $animDuration ease-out infinite;
+} */
+
+.mouse {
+  @include bgGradient;
+  position: relative;
+  width: $widthMouse;
+  height: $heightMouse;
+  border-radius: 100px;
+  background-size: 100% 200%;
+  animation: 
+    colorSlide $animDuration linear infinite,
+    nudgeMouse $animDuration ease-out infinite;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto;
+  }
+  &:before {
+    width: $widthMouse - $borderMouse;
+    height: $heightMouse - $borderMouse;
+    background-color: $colorOutlineF;
+    border-radius: 100px;
+  }
+  &:after {
+    background-color: $colorOutlineFade;
+    width: $sizeTrackball;
+    height: $sizeTrackball;
+    border-radius: 100%;
+    animation: trackBallSlide $animDuration linear infinite;
+  }
+}
+
+@keyframes colorSlide { 
+  0% { background-position: 0% 100%; }
+  20% { background-position: 0% 0%; }
+  21% { background-color: $colorOutlineFade; }
+  29.99% { 
+    background-color: $colorOutline;
+    background-position: 0% 0%;
+  }
+  30% { 
+    background-color: $colorOutlineFade;
+    background-position: 0% 100%;
+  }
+  50% { background-position: 0% 0%; }
+  51% { background-color: $colorOutlineFade; }
+  59% { 
+    background-color: $colorOutline;
+    background-position: 0% 0%;
+  }
+  60% { 
+    background-color: $colorOutlineFade;
+    background-position: 0% 100%;
+  }
+  80% { background-position: 0% 0%; }
+  81% { background-color: $colorOutlineFade; }
+  90%, 100% { background-color: $colorOutline; }
+}
+
+@keyframes trackBallSlide {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  6% { 
+    opacity: 1;
+    transform: scale(0.9) translateY($posTrackball/4);
+  }
+  14% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+  }
+  15%, 19% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  28%, 29.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  36% { 
+    opacity: 1;
+    transform: scale(0.9) translateY($posTrackball/4);
+  }
+  44% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+  }
+  45%, 49% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  58%, 59.99% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+  66% { 
+    opacity: 1;
+    transform: scale(0.9) translateY($posTrackball/4);
+  }
+  74% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY($posTrackball*2);
+  }
+  75%, 79% {
+    opacity: 0;
+    transform: scale($shrinkTrackball) translateY(-$posTrackball);
+  }
+  88%, 100% {
+    opacity: 1;
+    transform: scale(1) translateY(-$posTrackball);
+  }
+}
+
+@keyframes nudgeMouse {
+  0% { transform: translateY(0); }
+  20% { transform: translateY($posMouse); }
+  30% { transform: translateY(0); }
+  50% { transform: translateY($posMouse); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY($posMouse); }
+  90% { transform: translateY(0); }
+}
+
+@keyframes nudgeText {
+  0% { transform: translateY(0); }
+  20% { transform: translateY($posText); }
+  30% { transform: translateY(0); }
+  50% { transform: translateY($posText); }
+  60% { transform: translateY(0); }
+  80% { transform: translateY($posText); }
+  90% { transform: translateY(0); }
 }
