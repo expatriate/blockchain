@@ -318,8 +318,8 @@ body, html {
   } */
 }
 body, html, .section, a , input, button, textarea {
-  cursor: url('../img/cursor.svg'), 
-          url('../img/cursor.cur'),
+  cursor: url('/img/cursor.svg'), 
+          url('/img/cursor.cur'),
           auto;
 }
 

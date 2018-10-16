@@ -650,7 +650,7 @@ body, html {
     opacity: 0; }
 
 body, html, .section, a, input, button, textarea {
-  cursor: url("../img/cursor.svg"), url("../img/cursor.cur"), auto; }
+  cursor: url("/img/cursor.svg"), url("/img/cursor.cur"), auto; }
 
 a:not(.no-border) {
   -webkit-transition: all 0.3s ease-out;
