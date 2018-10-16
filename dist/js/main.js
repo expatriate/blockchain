@@ -704,9 +704,9 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i], value;
         if (showRed) {
-          value = pn.noise((vertex.x + step/10)/ 30, vertex.y / 30, 200 + vertex.z / 10);
+          value = pn.noise((vertex.x + step / 2)/ 40, vertex.y / 30, 200 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step/10)/ 20, vertex.y / 20, 100 + vertex.z / 10);
+          value = pn.noise((vertex.x + step / 2)/ 30, vertex.y / 20, 100 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
@@ -732,7 +732,7 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i];
 
-        var value = pn.noise((vertex.x + step/10)/ 20, vertex.y / 20, 100 + vertex.z / 10);
+        var value = pn.noise((vertex.x + step / 2)/ 30, vertex.y / 20, 100 + vertex.z / 10);
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (inverter / 10)) * inverter / 50;
         vertex.y = sphereVerticesArray[i].y + (sphereVerticesNormArray[i].y * value * (inverter / 10)) * inverter / 50;
