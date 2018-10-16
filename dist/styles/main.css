@@ -408,8 +408,9 @@ body, html {
   z-index: 99999;
   top: 50px;
   left: 100px; }
-  #header img, #header svg {
-    width: 116px; }
+  #header a div {
+    width: 116px;
+    height: 42px; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     #header {
       left: 20px; } }
@@ -431,8 +432,9 @@ body, html {
   z-index: 99999;
   bottom: 50px;
   left: 100px; }
-  #footer img, #footer svg {
-    width: 111px; }
+  #footer a div {
+    width: 109px;
+    height: 62px; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     #footer {
       left: 20px; } }
@@ -454,16 +456,12 @@ body, html {
 .menu {
   position: fixed;
   top: 50%;
-  left: 100px;
+  left: 90px;
   z-index: 99999;
-  padding: 5px;
+  padding: 10px;
   border-radius: 100%;
   width: 14px;
-  height: 14px;
-  -webkit-transition: -webkit-transform 0.4s ease;
-  transition: -webkit-transform 0.4s ease;
-  transition: transform 0.4s ease;
-  transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+  height: 14px; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     .menu {
       left: 80px; } }
@@ -474,7 +472,7 @@ body, html {
     width: 14px;
     height: 2px;
     background-color: #4c4c4c;
-    top: 10px;
+    top: 15px;
     position: absolute; }
     .menu__inside:after {
       position: absolute;
@@ -482,43 +480,27 @@ body, html {
       width: 14px;
       height: 2px;
       background-color: #4c4c4c;
-      content: '';
-      -webkit-transition: -webkit-transform 0.4s ease;
-      transition: -webkit-transform 0.4s ease;
-      transition: transform 0.4s ease;
-      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+      content: ''; }
     .menu__inside:before {
       position: absolute;
       bottom: -5px;
       width: 14px;
       height: 2px;
       background-color: #4c4c4c;
-      content: '';
-      -webkit-transition: -webkit-transform 0.4s ease;
-      transition: -webkit-transform 0.4s ease;
-      transition: transform 0.4s ease;
-      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+      content: ''; }
   .menu.opened .menu__inside {
     background-color: transparent; }
     .menu.opened .menu__inside:after {
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
-      top: 0px;
-      -webkit-transition: -webkit-transform 0.4s ease;
-      transition: -webkit-transform 0.4s ease;
-      transition: transform 0.4s ease;
-      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+      top: 0px; }
     .menu.opened .menu__inside:before {
       -webkit-transform: rotate(-45deg);
               transform: rotate(-45deg);
-      bottom: 0px;
-      -webkit-transition: -webkit-transform 0.4s ease;
-      transition: -webkit-transform 0.4s ease;
-      transition: transform 0.4s ease;
-      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+      bottom: 0px; }
   @media screen and (min-width: 1024px) {
     .menu:hover {
-      padding: 5px;
+      padding: 10px;
       border-radius: 100%;
       background-color: #a01d21; }
       .menu:hover .menu__inside {
@@ -741,11 +723,26 @@ a:not(.no-border) {
       .product-slide__text {
         font-size: 11px; } }
   .product-slide__image {
-    text-align: center;
     margin-top: 16px;
-    margin-bottom: 96px; }
-    .product-slide__image img, .product-slide__image svg {
-      height: 104px; }
+    margin-bottom: 96px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .product-slide__image div {
+      height: 104px;
+      width: 150px;
+      background-position: center;
+      background-repeat: no-repeat; }
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       .product-slide__image {
         margin-bottom: 46px; } }

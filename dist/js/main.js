@@ -77,7 +77,7 @@ $(document).ready(function() {
       grabCursor: false,
       allowTouchMove: true,
       autoplay: {
-        delay: 5000,
+        delay: 10000,
         stopOnLastSlide: true
       },
       breakpoints: {
@@ -101,7 +101,7 @@ $(document).ready(function() {
       slidesPerView: 1,
       grabCursor: false,
       autoplay: {
-        delay: 5000,
+        delay: 10000,
         stopOnLastSlide: true
       },
       on: {
@@ -124,7 +124,7 @@ $(document).ready(function() {
           var percent = (this.activeIndex + 1) * pc;
           percent = percent > 100 ? 100 : percent;
           var line = $('#section-direction__slider').find('.swiper-pagination-line');
-          line.animate({width: percent + '%'}, 5000);
+          line.animate({width: percent + '%'}, 10000);
         },
       },
       pagination: {
@@ -154,7 +154,7 @@ $(document).ready(function() {
     var pc = 100 / (this.slides.length -1);
     var percent = (this.activeIndex + 1) * pc + '%';
     var line = $('#section-direction__slider').find('.swiper-pagination-line');
-    line.animate({width: percent}, 5000);
+    line.animate({width: percent}, 10000);
   });
 
   directionSlider.on('sliderMove', function() {
