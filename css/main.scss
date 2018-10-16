@@ -74,23 +74,28 @@ body, html {
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   top:50%;
   left: 100px;
   z-index: 99999;
+  padding: 5px;
+  border-radius: 100%;
   //cursor: pointer;
   width: 14px;
   height: 14px;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease;
 
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     left: 80px;
+  }
+  @media screen and (max-width: 720px) {
+    top: 35px;
   }
   &__inside {
     width: 14px;
     height: 2px;
     background-color: #4c4c4c;
-    top: 6px;
+    top: 10px;
     position: absolute;
     &:after {
       position: absolute;
@@ -99,7 +104,7 @@ body, html {
       height: 2px;
       background-color: #4c4c4c;
       content: '';
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     &:before {
@@ -109,7 +114,7 @@ body, html {
       height: 2px;
       background-color: #4c4c4c;
       content: '';
-      transition: all 0.4s ease;
+      transition: transform 0.4s ease;
     }
   }
 
@@ -120,12 +125,32 @@ body, html {
       &:after {
         transform: rotate(45deg);
         top:0px;
-        transition: all 0.4s ease;
+        transition: transform 0.4s ease;
       }
       &:before {
         transform: rotate(-45deg);
         bottom: 0px;
-        transition: all 0.4s ease;
+        transition: transform 0.4s ease;
+      }
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    &:hover {
+      padding: 5px;
+      border-radius: 100%;
+      background-color: #a01d21;
+
+      .menu__inside {
+        background-color: #ffffff;
+        &:before, &:after {
+          background-color: #ffffff;
+        }
+      }
+
+      &.opened {
+        .menu__inside {
+          background-color: transparent;
+        }
       }
     }
   }
@@ -183,24 +208,37 @@ body, html {
 .mail {
   position: absolute;
   z-index: 999;
-  top: 50px;
-  right: 100px;
+  top: 40px;
+  right: 110px;
+  border-radius: 100%;
+  padding: 10px;
   //cursor: pointer;
   img, svg {
+    margin-top:5px;
     width: 27px;
   }
   @media screen and (max-width: 720px) {
-    right: 60px;
+    right: 67px;
     top: 30px;
+    padding: 0px;
     img, svg {
+      margin-top:0px;
       width: 24px;
     }
   }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     right: 100px;
     top: 50px;
+    padding: 0px;
     img, svg {
+      margin-top:0px;
       width: 24px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    &:hover {
+        border-radius: 100%;
+        background-color: #efefef;
     }
   }
 }
@@ -208,17 +246,23 @@ body, html {
 .share {
   position: absolute;
   z-index: 999;
-  bottom: 50px;
-  right: 100px;
+  bottom: 40px;
+  right: 110px;
+
+  border-radius: 100%;
+  padding: 8px 14px 8px 12px;
   //cursor: pointer;
   img, svg {
+    margin-top:5px;
     width: 24px;
   }
   @media screen and (max-width: 720px) {
-    right: 100px;
+    right: 110px;
     bottom:auto;
+    padding: 0px;
     top: 30px;
     img, svg {
+      margin-top: -3px;
       width: 18px;
     }
   }
@@ -226,8 +270,16 @@ body, html {
     right: 140px;
     bottom:auto;
     top: 50px;
+    padding: 0px;
     img, svg {
+      margin-top: 0px;
       width: 18px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    &:hover {
+        border-radius: 100%;
+        background-color: #efefef;
     }
   }
 }
@@ -260,6 +312,10 @@ body, html {
   z-index: 999999;
   transition: transform 0.3s ease-out;
 
+  &.is-hidden {
+    opacity: 0;
+  }
+
 /*   &.is-moving {
     transform: scale(0.7);
   } */
@@ -270,7 +326,7 @@ body, html, .section, a , input, button, textarea {
           auto;
 }
 
-a {
+a:not(.no-border) {
   transition: all 0.3s ease-out;
   text-decoration: none;
   border-bottom: 2px solid #ffffff;
@@ -787,6 +843,10 @@ a {
         padding: 18px;
         font-size: 14px;
       }
+      @media screen and (max-width: 720px) and (max-height: 500px) {
+        padding: 0px 18px;
+        font-size: 10px;
+      }
     }
   }
 }
@@ -841,7 +901,7 @@ a {
     right: -70px;
     top: 0px;
     padding: 25px;
-    transition: all .5s ease;
+    //transition: all .5s ease;
     @media screen and (min-width: 720px) and (max-width: 1024px) {
       right: 0px;
     }
@@ -854,8 +914,8 @@ a {
     }
 
     &:hover {
-      background: #bbbbbb;
-      transition: all .5s ease;
+      background: #a01d21;
+      //transition: all .5s ease;
     }
   }
 }
@@ -1205,6 +1265,10 @@ a {
   }
 }
 
+.hoverable {
+  cursor: none;
+}
+
 
 
 
@@ -1231,7 +1295,7 @@ $posText: 2px;
 
 $sizeTrackball: 4px;
 $posTrackball: 16px;
-$shrinkTrackball: 0.2;
+$shrinkTrackball: 0.02;
 
 $animDuration: 5s;
 

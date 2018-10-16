@@ -452,22 +452,29 @@ body, html {
     margin-top: 16px; }
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 100px;
   z-index: 99999;
+  padding: 5px;
+  border-radius: 100%;
   width: 14px;
   height: 14px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease; }
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     .menu {
       left: 80px; } }
+  @media screen and (max-width: 720px) {
+    .menu {
+      top: 35px; } }
   .menu__inside {
     width: 14px;
     height: 2px;
     background-color: #4c4c4c;
-    top: 6px;
+    top: 10px;
     position: absolute; }
     .menu__inside:after {
       position: absolute;
@@ -476,8 +483,10 @@ body, html {
       height: 2px;
       background-color: #4c4c4c;
       content: '';
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
+      -webkit-transition: -webkit-transform 0.4s ease;
+      transition: -webkit-transform 0.4s ease;
+      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
     .menu__inside:before {
       position: absolute;
       bottom: -5px;
@@ -485,22 +494,39 @@ body, html {
       height: 2px;
       background-color: #4c4c4c;
       content: '';
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
+      -webkit-transition: -webkit-transform 0.4s ease;
+      transition: -webkit-transform 0.4s ease;
+      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
   .menu.opened .menu__inside {
     background-color: transparent; }
     .menu.opened .menu__inside:after {
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
       top: 0px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
+      -webkit-transition: -webkit-transform 0.4s ease;
+      transition: -webkit-transform 0.4s ease;
+      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
     .menu.opened .menu__inside:before {
       -webkit-transform: rotate(-45deg);
               transform: rotate(-45deg);
       bottom: 0px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
+      -webkit-transition: -webkit-transform 0.4s ease;
+      transition: -webkit-transform 0.4s ease;
+      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, -webkit-transform 0.4s ease; }
+  @media screen and (min-width: 1024px) {
+    .menu:hover {
+      padding: 5px;
+      border-radius: 100%;
+      background-color: #a01d21; }
+      .menu:hover .menu__inside {
+        background-color: #ffffff; }
+        .menu:hover .menu__inside:before, .menu:hover .menu__inside:after {
+          background-color: #ffffff; }
+      .menu:hover.opened .menu__inside {
+        background-color: transparent; } }
   @media screen and (max-width: 720px) {
     .menu {
       right: 20px;
@@ -541,44 +567,66 @@ body, html {
 .mail {
   position: absolute;
   z-index: 999;
-  top: 50px;
-  right: 100px; }
+  top: 40px;
+  right: 110px;
+  border-radius: 100%;
+  padding: 10px; }
   .mail img, .mail svg {
+    margin-top: 5px;
     width: 27px; }
   @media screen and (max-width: 720px) {
     .mail {
-      right: 60px;
-      top: 30px; }
+      right: 67px;
+      top: 30px;
+      padding: 0px; }
       .mail img, .mail svg {
+        margin-top: 0px;
         width: 24px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     .mail {
       right: 100px;
-      top: 50px; }
+      top: 50px;
+      padding: 0px; }
       .mail img, .mail svg {
+        margin-top: 0px;
         width: 24px; } }
+  @media screen and (min-width: 1024px) {
+    .mail:hover {
+      border-radius: 100%;
+      background-color: #efefef; } }
 
 .share {
   position: absolute;
   z-index: 999;
-  bottom: 50px;
-  right: 100px; }
+  bottom: 40px;
+  right: 110px;
+  border-radius: 100%;
+  padding: 8px 14px 8px 12px; }
   .share img, .share svg {
+    margin-top: 5px;
     width: 24px; }
   @media screen and (max-width: 720px) {
     .share {
-      right: 100px;
+      right: 110px;
       bottom: auto;
+      padding: 0px;
       top: 30px; }
       .share img, .share svg {
+        margin-top: -3px;
         width: 18px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     .share {
       right: 140px;
       bottom: auto;
-      top: 50px; }
+      top: 50px;
+      padding: 0px; }
       .share img, .share svg {
+        margin-top: 0px;
         width: 18px; } }
+  @media screen and (min-width: 1024px) {
+    .share:hover {
+      border-radius: 100%;
+      background-color: #efefef; } }
 
 /* .follower {
   width: 20px;
@@ -616,16 +664,18 @@ body, html {
   /*   &.is-moving {
     transform: scale(0.7);
   } */ }
+  .follower.is-hidden {
+    opacity: 0; }
 
 body, html, .section, a, input, button, textarea {
   cursor: url("../img/cursor.svg"), url("../img/cursor.cur"), auto; }
 
-a {
+a:not(.no-border) {
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
   text-decoration: none;
   border-bottom: 2px solid #ffffff; }
-  a:hover {
+  a:not(.no-border):hover {
     color: #a01d21;
     border-bottom: 2px solid #a01d21;
     -webkit-transition: all 0.6s ease;
@@ -1076,6 +1126,10 @@ a {
       .section-team-black__text {
         padding: 18px;
         font-size: 14px; } }
+    @media screen and (max-width: 720px) and (max-height: 500px) {
+      .section-team-black__text {
+        padding: 0px 18px;
+        font-size: 10px; } }
 
 .section-contact p {
   margin: 0px;
@@ -1124,9 +1178,7 @@ a {
     position: absolute;
     right: -70px;
     top: 0px;
-    padding: 25px;
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease; }
+    padding: 25px; }
     @media screen and (min-width: 720px) and (max-width: 1024px) {
       .mail-hidden__close, .menu-hidden__close {
         right: 0px; } }
@@ -1138,9 +1190,7 @@ a {
       .mail-hidden__close, .menu-hidden__close {
         top: -50px; } }
     .mail-hidden__close:hover, .menu-hidden__close:hover {
-      background: #bbbbbb;
-      -webkit-transition: all .5s ease;
-      transition: all .5s ease; }
+      background: #a01d21; }
 
 .menu-hidden__close {
   right: 70px;
@@ -1483,6 +1533,9 @@ a {
     .mobile-visible {
       display: block !important; } }
 
+.hoverable {
+  cursor: none; }
+
 /* @import url(https://fonts.googleapis.com/css?family=Cabin); */
 .mouse-wrapper {
   height: 80px;
@@ -1603,12 +1656,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   14% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   15%, 19% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   28%, 29.99% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);
@@ -1623,12 +1676,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   44% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   45%, 49% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   58%, 59.99% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);
@@ -1643,12 +1696,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   74% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   75%, 79% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   88%, 100% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);
@@ -1665,12 +1718,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   14% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   15%, 19% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   28%, 29.99% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);
@@ -1685,12 +1738,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   44% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   45%, 49% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   58%, 59.99% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);
@@ -1705,12 +1758,12 @@ a {
             transform: scale(0.9) translateY(4px); }
   74% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(32px);
-            transform: scale(0.2) translateY(32px); }
+    -webkit-transform: scale(0.02) translateY(32px);
+            transform: scale(0.02) translateY(32px); }
   75%, 79% {
     opacity: 0;
-    -webkit-transform: scale(0.2) translateY(-16px);
-            transform: scale(0.2) translateY(-16px); }
+    -webkit-transform: scale(0.02) translateY(-16px);
+            transform: scale(0.02) translateY(-16px); }
   88%, 100% {
     opacity: 1;
     -webkit-transform: scale(1) translateY(-16px);

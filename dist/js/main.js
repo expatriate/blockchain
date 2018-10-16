@@ -1,5 +1,4 @@
 var directionSlider, productSlider, maxOpened = 0, menuOpened = false;
-
 $(document).ready(function() {
 
   $('#fullpage').fullpage({
@@ -26,6 +25,11 @@ $(document).ready(function() {
         if (maxOpened < 1) {
           maxOpened = 1;
         }
+      }
+
+      // Product section
+      if (destination.index == 3) {
+        productSlider.autoplay.start();
       }
 
       // Directions section
@@ -88,6 +92,8 @@ $(document).ready(function() {
         }
       }
   });
+
+  productSlider.autoplay.stop();
 
   directionSlider = new Swiper('#section-direction__slider', {
       speed: 400,
@@ -167,7 +173,6 @@ $(document).ready(function() {
     $('.mail-hidden').animate({opacity: 0}, 200, function() {
       $('.mail-hidden').css({display:'none'})
     });
-    $.fn.fullpage.setAllowScrolling(true);
     $('.mouse').show();
     restoreWritetousAnimation();
   });
@@ -185,7 +190,9 @@ $(document).ready(function() {
       $('.menu-hidden').animate({opacity: 0}, 200, function() {
         $('.menu-hidden').css({display:'none'})
       });
-      $.fn.fullpage.setAllowScrolling(true);
+      if ($.fn.fullpage.getActiveSection !== 6) {
+        $.fn.fullpage.setAllowScrolling(true);
+      }
       $('.mouse').show();
       restoreMenuAnimation();
       menuOpened = false;
@@ -198,7 +205,6 @@ $(document).ready(function() {
     $('.menu-hidden').animate({opacity: 0}, 200, function() {
       $('.menu-hidden').css({display:'none'})
     });
-    $.fn.fullpage.setAllowScrolling(true);
     $('.mouse').show();
     restoreMenuAnimation();
     menuOpened = false;
@@ -235,6 +241,10 @@ $(document).ready(function() {
   function restoreMenuAnimation() {
     $('#header').removeAttr('style');
     $('#footer').removeAttr('style');
+
+    if ($.fn.fullpage.getActiveSection().index !== 6) {
+      $.fn.fullpage.setAllowScrolling(true);
+    }
   }
 
   function startWritetousAnimation() {
@@ -266,6 +276,10 @@ $(document).ready(function() {
       submit.addClass('animated-top');
     }, 500);
 
+    if ($.fn.fullpage.getActiveSection().index !== 6) {
+      $.fn.fullpage.setAllowScrolling(true);
+    }
+
     $('#menu').show(200);
   }
 
@@ -287,8 +301,10 @@ $(document).ready(function() {
     duration: 450
   });
 */
-
-  stickyElements('.menu-hidden__close, .pagination-point', {stickiness: 8, duration: 0});
+  
+  if ($(window).width() > 1024) {
+    stickyElements('.menu-hidden__close, .mail-hidden__close, .menu, .mail, .share', {stickiness: 5});
+  }
 
   init();
 
@@ -339,7 +355,7 @@ if (isEdEgde) {
 }
 var topoffset;
 function moveCursor(e) {
-  $cursor.addClass('is-moving');
+  //$cursor.addClass('is-moving');
   //Swiper.browser
   //topoffset = isEdEgde ? e.pageY - 31 : e.pageY;
   TweenLite.to($cursor, 0.23, {
@@ -348,13 +364,27 @@ function moveCursor(e) {
     ease: Power4.easOut
   });
   
-  clearTimeout(timer);
+  //clearTimeout(timer);
 
-   var timer = setTimeout(function() {
+   /*var timer = setTimeout(function() {
        $cursor.removeClass('is-moving');
-   }, 300);
+   }, 300);*/
+}
+function mouseOver(e) {
+  if ($(e.target).hasClass('hoverable')) {
+    $cursor.addClass('is-hidden');
+  }
+}
+function mouseOut(e) {
+  if ($(e.target).hasClass('hoverable')) {
+    if (!$(e.target).parents('svg').length && !$(e.relatedTarget).parents('svg').length) {
+      $cursor.removeClass('is-hidden');
+    }
+  }
 }
 
+$(window).on('mouseover', mouseOver);
+$(window).on('mouseout', mouseOut);
 $(window).on('mousemove', moveCursor);
 
 /*var mouseX, mouseY, moved, follower = $('.follower');
@@ -674,9 +704,9 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i], value;
         if (showRed) {
-          value = pn.noise((vertex.x + step)/ 30, vertex.y / 30, 200 + vertex.z / 10);
+          value = pn.noise((vertex.x + step/10)/ 30, vertex.y / 30, 200 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step)/ 10, vertex.y / 10, 12 + vertex.z / 10);
+          value = pn.noise((vertex.x + step/10)/ 20, vertex.y / 20, 100 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
@@ -702,7 +732,7 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i];
 
-        var value = pn.noise((vertex.x + step)/ 10, vertex.y / 10, 12 + vertex.z / 10);
+        var value = pn.noise((vertex.x + step/10)/ 20, vertex.y / 20, 100 + vertex.z / 10);
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (inverter / 10)) * inverter / 50;
         vertex.y = sphereVerticesArray[i].y + (sphereVerticesNormArray[i].y * value * (inverter / 10)) * inverter / 50;
