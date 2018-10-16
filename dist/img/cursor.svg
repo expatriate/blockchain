@@ -10,8 +10,9 @@
 	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
 	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
 ]>
-<svg width="5" height="5" version="1.1" id="Cursor" 
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 4.998 4.998" enable-background="new 0 0 4.998 4.998" xml:space="preserve">
-	<circle fill="#A01D21" cx="2.499" cy="2.499" r="2.499"/>
+<svg version="1.1" id="cursor" 
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="4" height="4"
+	 viewBox="0 0 4 4" enable-background="new 0 0 4 4" xml:space="preserve">
+
+<ellipse fill="#A01D21" cx="2" cy="2" rx="2" ry="2"/>
 </svg>

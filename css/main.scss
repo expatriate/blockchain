@@ -247,8 +247,8 @@ body, html {
 } */
 .follower {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
   top: 50%;
   left: 50%;
   margin: -12px 0 0 -12px;
@@ -265,7 +265,9 @@ body, html {
   } */
 }
 body, html, .section, a , input, button, textarea {
-  cursor: url('../img/cursor.svg'), auto;
+  cursor: url('../img/cursor.svg'), 
+          url('../img/cursor.cur'),
+          auto;
 }
 
 a {

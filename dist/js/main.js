@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   $('#fullpage').fullpage({
     //options here
-    autoScrolling:true,
+    //autoScrolling:true,
     scrollHorizontally: true,
     menu: '#menu',
     fixedElements: '#menu, #header, #footer, .mail, .share, .follower, #mouse',
@@ -72,6 +72,10 @@ $(document).ready(function() {
       slidesPerView: 3,
       grabCursor: false,
       allowTouchMove: true,
+      autoplay: {
+        delay: 5000,
+        stopOnLastSlide: true
+      },
       breakpoints: {
         1200: {
           spaceBetween: 40
@@ -329,10 +333,15 @@ $(document).ready(function() {
     $(".follower").css({left:e.clientX, top:e.clientY});
 });*/
 var $cursor = $('.follower');
-
+var isEdEgde = Swiper.browser.isIE || Swiper.browser.isEdge ? true : false;
+if (isEdEgde) {
+  $('html').addClass('is-ie is-edge');
+}
+var topoffset;
 function moveCursor(e) {
   $cursor.addClass('is-moving');
-  
+  //Swiper.browser
+  //topoffset = isEdEgde ? e.pageY - 31 : e.pageY;
   TweenLite.to($cursor, 0.23, {
     left: e.pageX,
     top: e.pageY,
