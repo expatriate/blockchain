@@ -4,7 +4,7 @@ $(document).ready(function() {
   $('#fullpage').fullpage({
     //options here
     //autoScrolling:true,
-    scrollHorizontally: true,
+    //scrollHorizontally: true,
     menu: '#menu',
     fixedElements: '#menu, #header, #footer, .mail, .share, .follower, #mouse',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
