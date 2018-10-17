@@ -470,7 +470,11 @@ body, html {
       left: 80px; } }
   @media screen and (max-width: 720px) {
     .menu {
-      top: 35px; } }
+      top: 35px;
+      padding: 10px; } }
+  @media screen and (min-width: 720px) and (max-width: 1024px) {
+    .menu {
+      padding: 10px; } }
   .menu__inside {
     width: 14px;
     height: 2px;
@@ -959,6 +963,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     background-size: 30px 70px; }
     .section-news__nav-wrapper .swiper-button-next_news.swiper-button-disabled, .section-news__nav-wrapper .swiper-button-next_product.swiper-button-disabled, .section-product__nav-wrapper .swiper-button-next_news.swiper-button-disabled, .section-product__nav-wrapper .swiper-button-next_product.swiper-button-disabled {
       opacity: 0.4; }
+    @media screen and (max-width: 1024px) {
+      .section-news__nav-wrapper .swiper-button-next_news, .section-news__nav-wrapper .swiper-button-next_product, .section-product__nav-wrapper .swiper-button-next_news, .section-product__nav-wrapper .swiper-button-next_product {
+        display: none; } }
   .section-news__nav-wrapper .swiper-button-prev_news, .section-news__nav-wrapper .swiper-button-prev_product, .section-product__nav-wrapper .swiper-button-prev_news, .section-product__nav-wrapper .swiper-button-prev_product {
     left: auto;
     top: 100px;
@@ -970,6 +977,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     background-size: 30px 70px; }
     .section-news__nav-wrapper .swiper-button-prev_news.swiper-button-disabled, .section-news__nav-wrapper .swiper-button-prev_product.swiper-button-disabled, .section-product__nav-wrapper .swiper-button-prev_news.swiper-button-disabled, .section-product__nav-wrapper .swiper-button-prev_product.swiper-button-disabled {
       opacity: 0.4; }
+    @media screen and (max-width: 1024px) {
+      .section-news__nav-wrapper .swiper-button-prev_news, .section-news__nav-wrapper .swiper-button-prev_product, .section-product__nav-wrapper .swiper-button-prev_news, .section-product__nav-wrapper .swiper-button-prev_product {
+        display: none; } }
 
 .section-title {
   margin-bottom: 64px;

@@ -95,7 +95,12 @@ body, html {
   }
   @media screen and (max-width: 720px) {
     top: 35px;
+    padding: 10px;
   }
+  @media screen and (min-width: 720px) and (max-width: 1024px) {
+    padding: 10px;
+  }
+
   &__inside {
     width: 14px;
     height: 2px;
@@ -669,6 +674,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       &.swiper-button-disabled {
         opacity: 0.4;
       }
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
     }
     .swiper-button-prev_news, .swiper-button-prev_product {
       left: auto;
@@ -682,6 +690,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
       &.swiper-button-disabled {
         opacity: 0.4;
+      }
+      @media screen and (max-width: 1024px) {
+        display: none;
       }
     }
   }
