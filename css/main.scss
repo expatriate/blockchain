@@ -370,6 +370,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   }
 
   &-menu {
+    @media screen and (min-width: 1400px) {
+      padding-left: 200px;
+    }
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       padding-left: 100px;
     }
@@ -387,12 +390,27 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
 .news-slide {
   &__media {
-     img {
+    img {
       height: 200px;
       width: 100%;
       object-fit: cover;
       margin-top: 10px;
-     }
+    }
+    @media screen and (max-width: 720px) {
+      img {
+        height: 130px;
+      }
+    }
+    @media screen and (max-width: 720px) and (max-height: 500px) {
+      img {
+        display: none;
+      }
+    }
+
+    &__wrapper {
+      overflow: hidden;
+      padding-bottom: 2px;
+    }
   }
 
   &__user {
@@ -406,6 +424,10 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     }
     [data-scribe="component:author"] {
       flex: 1;
+    }
+    &__wrapper {
+      overflow: hidden;
+      padding-bottom: 2px;
     }
 
     a {
@@ -425,8 +447,21 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     font-size: 18px;
     font-family: 'LatoRegular';
     color: #3e3e3e;
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      font-size: 16px;
+    }
+    @media screen and (min-width: 720px) and (max-width: 1024px) {
+      font-size: 14px;
+    }
+    @media screen and (max-width: 720px) {
+      font-size: 12px;
+    }
     a {
       color: #a01d21;
+    }
+    &__wrapper {
+      overflow: hidden;
+      padding-bottom: 2px;
     }
   }
 }
@@ -439,6 +474,8 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   &__wrapper {
     display: flex;
     align-items: center;
+    overflow: hidden;
+    padding-bottom: 2px;
     svg {
       width: 26px;
       height: 22px;
@@ -458,6 +495,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
     &__wrapper {
       overflow: hidden;
+      padding-bottom: 2px;
     }
 
     @media screen and (max-width: 720px) {
@@ -465,7 +503,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       padding-bottom: 12px;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 
@@ -477,6 +515,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
     &__wrapper {
       overflow: hidden;
+      padding-bottom: 2px;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
@@ -489,7 +528,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       font-size: 14px;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
-      font-size: 11px;
+      font-size: 10px;
     }
   }
 
@@ -537,6 +576,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
     &__wrapper {
       overflow: hidden;
+      padding-bottom: 2px;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
@@ -549,7 +589,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       font-size: 22px;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 
@@ -562,6 +602,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
     &__wrapper {
       overflow: hidden;
+      padding-bottom: 2px;
     }
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
@@ -574,7 +615,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       font-size: 14px;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
-      font-size: 11px;
+      font-size: 10px;
     }
   }
 }
@@ -621,7 +662,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       width: 60%;
     }
     @media screen and (max-width: 720px) {
-      width: 98%;
+      width: 97%;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
       width: 96%;
@@ -655,12 +696,19 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     //cursor: pointer;
   }
 }
+.swiper-container {
+  cursor: inherit!important;
+}
 
 .section-news, .section-product {
   &__nav-wrapper {
     position: absolute;
     right: 120px;
     top: 50%;
+
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      right: 30px;
+    }
     .swiper-button-next_news, .swiper-button-next_product {
       left: auto;
       top: 10px;
@@ -697,13 +745,14 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     }
   }
 }
-
+.section-title:not(.no-a) {
+  overflow: hidden;
+  padding-bottom: 2px;
+}
 .section-title {
-  
   margin-bottom: 64px;
   position: relative;
-  overflow: hidden;
-
+  
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     margin-bottom: 48px;
   }
@@ -748,6 +797,10 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
       margin-bottom: 6px;
+      img, svg {
+        height: 30px;
+        width: 50px;
+      }
     }
   }
   &--no-pad {
@@ -768,9 +821,11 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     font-size: 16px;
     max-width: 70%;
+    line-height: 1.2;
   }
   @media screen and (max-width: 720px) {
     font-size: 14px;
+    line-height: 1.2;
   }
   @media screen and (max-width: 720px) and (max-height: 500px) {
     font-size: 11px;
@@ -778,6 +833,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
   &__wrapper {
     overflow: hidden;
+    padding-bottom: 2px;
   }
   /* @media screen and (min-width: 1200px) {
     font-size: 2.2vh;
@@ -1616,11 +1672,19 @@ $animDuration: 5s;
 
 
 .not-animated {
-  transition: transform ease 1s;
-  transform: translateY(100%);
+  transform: translateY(150%);
 }
 
 .animated {
-  transition: transform ease 1s; 
+  transition: transform ease-out 1s;
   transform: translateY(0%);
+}
+
+.not-animated-opacity {
+  opacity: 0;
+}
+
+.animated-opacity {
+  opacity: 1;
+  transition: opacity ease-out 1s;
 }
