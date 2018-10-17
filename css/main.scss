@@ -3,6 +3,10 @@ body, html {
     min-height: 100%;
 }
 
+*{
+  outline: none;
+}
+
 
 .col {
     display: flex;
@@ -80,7 +84,7 @@ body, html {
   top:50%;
   left: 90px;
   z-index: 99999;
-  padding: 10px;
+  padding: 30px;
   border-radius: 100%;
   //cursor: pointer;
   width: 14px;
@@ -96,7 +100,7 @@ body, html {
     width: 14px;
     height: 2px;
     background-color: #4c4c4c;
-    top: 15px;
+    top: 35px;
     position: absolute;
     &:after {
       position: absolute;
@@ -133,7 +137,7 @@ body, html {
   }
   @media screen and (min-width: 1024px) {
     &:hover {
-      padding: 10px;
+      padding: 30px;
       border-radius: 100%;
       background-color: #a01d21;
 
@@ -323,7 +327,7 @@ body, html, .section, a , input, button, textarea {
           auto;
 }
 
-a:not(.no-border) {
+a:not(.no-border):not([data-scribe="element:user_link"]) {
   transition: all 0.3s ease-out;
   text-decoration: none;
   border-bottom: 2px solid #ffffff;
@@ -340,6 +344,7 @@ a:not(.no-border) {
   padding-right: 200px;
   width: 100%;
   max-width: 1800px;
+  position: relative;
   margin: auto;
 
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
@@ -375,6 +380,68 @@ a:not(.no-border) {
   }
 }
 
+.news-slide {
+  &__media {
+     img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      margin-top: 10px;
+     }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+    }
+    [data-scribe="component:author"] {
+      flex: 1;
+    }
+
+    a {
+      text-decoration: none;
+      color: #111111;
+      font-size: 12px;
+    }
+  }
+  &__timePosted {
+    text-decoration: none;
+    color: #111111;
+    font-size: 12px;
+    text-align: right;
+  }
+  &__tweet {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: 'LatoRegular';
+    color: #3e3e3e;
+    a {
+      color: #a01d21;
+    }
+  }
+}
+
+.twitter-link {
+  color: #a01d21;
+  font-size: 18px;
+  font-family: 'LatoRegular';
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 26px;
+      height: 22px;
+      margin-right: 8px;
+    }
+  }
+}
+
 .product-slide {
   width: 100%;
   height: 400px;
@@ -382,15 +449,15 @@ a:not(.no-border) {
   &__title {
     font-size: 21px;
     font-family: 'LatoBold';
-    margin-bottom: 24px;
+    padding-bottom: 24px;
 
-    /* @media screen and (min-width: 1200px) {
-      font-size: 2.2vh;
-    } */
+    &__wrapper {
+      overflow: hidden;
+    }
 
     @media screen and (max-width: 720px) {
       font-size: 18px;
-      margin-bottom: 12px;
+      padding-bottom: 12px;
     }
     @media screen and (max-width: 720px) and (max-height: 500px) {
       font-size: 16px;
@@ -403,9 +470,10 @@ a:not(.no-border) {
     text-align: justify;
     color: #3e3e3e;
 
-    /* @media screen and (min-width: 1200px) and (min-height: 640px) {
-      font-size: 1.9vh;
-    } */
+    &__wrapper {
+      overflow: hidden;
+    }
+
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 14px;
     }
@@ -462,6 +530,10 @@ a:not(.no-border) {
     margin-bottom: 24px;
     max-width: 1350px;
 
+    &__wrapper {
+      overflow: hidden;
+    }
+
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 42px;
     }
@@ -474,9 +546,6 @@ a:not(.no-border) {
     @media screen and (max-width: 720px) and (max-height: 500px) {
       font-size: 20px;
     }
-    /* @media screen and (min-width: 1200px) {
-      font-size: 6.75vh;
-    } */
   }
 
   &__text {
@@ -485,6 +554,10 @@ a:not(.no-border) {
     text-align: justify;
     max-width: 1152px;
     color: #3e3e3e;
+
+    &__wrapper {
+      overflow: hidden;
+    }
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 17px;
@@ -498,9 +571,12 @@ a:not(.no-border) {
     @media screen and (max-width: 720px) and (max-height: 500px) {
       font-size: 11px;
     }
-    /* @media screen and (min-width: 1200px) {
-      font-size: 2.2vh;
-    } */
+  }
+}
+
+#section-news__slider {
+  .swiper-wrapper {
+    padding-bottom: 32px;
   }
 }
 
@@ -575,10 +651,48 @@ a:not(.no-border) {
   }
 }
 
+.section-news, .section-product {
+  &__nav-wrapper {
+    position: absolute;
+    right: 120px;
+    top: 50%;
+    .swiper-button-next_news, .swiper-button-next_product {
+      left: auto;
+      top: 10px;
+      right: 0px;
+      background-image: url('../img/right-nav.svg');
+      width: 30px;
+      height: 70px;
+      cursor: inherit;
+      background-size: 30px 70px;
+
+      &.swiper-button-disabled {
+        opacity: 0.4;
+      }
+    }
+    .swiper-button-prev_news, .swiper-button-prev_product {
+      left: auto;
+      top:100px;
+      right: 0px;
+      background-image: url('../img/left-nav.svg');
+      height: 70px;
+      width: 30px;
+      cursor: inherit;
+      background-size: 30px 70px;
+
+      &.swiper-button-disabled {
+        opacity: 0.4;
+      }
+    }
+  }
+}
+
 .section-title {
   
   margin-bottom: 64px;
   position: relative;
+  overflow: hidden;
+
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     margin-bottom: 48px;
   }
@@ -592,6 +706,7 @@ a:not(.no-border) {
   &__text {
     font-size: 64px;
     font-family: 'LatoBold';
+    
     /* @media screen and (min-width: 1200px) {
       font-size: 6.75vh;
     } */
@@ -648,6 +763,10 @@ a:not(.no-border) {
   }
   @media screen and (max-width: 720px) and (max-height: 500px) {
     font-size: 11px;
+  }
+
+  &__wrapper {
+    overflow: hidden;
   }
   /* @media screen and (min-width: 1200px) {
     font-size: 2.2vh;
@@ -983,6 +1102,16 @@ a:not(.no-border) {
     background-color: rgba(0,0,0,.05);
     bottom: 6px;
     left: -1%;
+  }
+  &__icon {
+    position: absolute;
+    right: -30px;
+    top: -30px;
+
+    svg {
+      width: 27px;
+      height: 24px;
+    }
   }
   @media screen and (max-width: 720px) {
     &:after {
@@ -1471,4 +1600,16 @@ $animDuration: 5s;
   60% { transform: translateY(0); }
   80% { transform: translateY($posText); }
   90% { transform: translateY(0); }
+}
+
+
+
+.not-animated {
+  transition: transform ease 1s;
+  transform: translateY(100%);
+}
+
+.animated {
+  transition: transform ease 1s; 
+  transform: translateY(0%);
 }

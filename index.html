@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="dist/styles/main.css">
+    <link rel="stylesheet" href="vendor/object-fit.min.css">
     <link rel="stylesheet" href="vendor/fullpage/fullpage.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,6 +20,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/plugins/CSSPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/easing/EasePack.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+    <script src="vendor/tweeter_fetcher.min.js"></script>
+    <script src="vendor/tweeter_fetcher.min.js"></script>
+    <script src="vendor/object-fit.min.js"></script>
 
     
     <script src="vendor/Perlin.js"></script>
@@ -123,8 +127,8 @@
         <div class="section section-about">
             <div class="section__wrapper">
                 <div class="section-title">
-                    <div class="section-title__image">
-                        <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75.002px" height="56.001px" viewBox="0 0 75.002 56.001" enable-background="new 0 0 75.002 56.001" xml:space="preserve">
+                    <div class="section-title__image section-title__image--small-pad">
+                        <svg version="1.1" id="about-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75.002px" height="56.001px" viewBox="0 0 75.002 56.001" enable-background="new 0 0 75.002 56.001" xml:space="preserve">
                             <polygon fill="none" stroke="#919191" stroke-linecap="round" stroke-linejoin="round" points="28.956,14.077 42.962,17.829 
                                 46.715,31.835 36.462,42.088 22.456,38.335 18.703,24.33 "/>
                             <line fill="none" stroke="#919191" stroke-linecap="round" stroke-linejoin="round" x1="42.769" y1="18.014" x2="51.327" y2="8.326"/>
@@ -155,25 +159,52 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="section-title__text">
+                    <div class="section-title__text js-animate-show">
                         <span class="span-underline">Blockchain solutions</span> are modern and advanced <span class="span-underline">technologies</span> capable of improving life.
                     </div>
                 </div>
-                <div class="section-text">
-                    «Blockchain solutions» company sets a goal to become one of the leading players in the global blockchain industry, along with actively participating in the development of the Russian digital economy. Being a part of SAFMAR financial industrial group, the company is intended to develop the crypto-currency line of business, as well as to promote the current digital technologies implementation into the holding’s work.
+                <div class="section-text__wrapper">
+                    <div class="section-text js-animate-show">
+                        «Blockchain solutions» company sets a goal to become one of the leading players in the global blockchain industry, along with actively participating in the development of the Russian digital economy. Being a part of SAFMAR financial industrial group, the company is intended to develop the crypto-currency line of business, as well as to promote the current digital technologies implementation into the holding’s work.
+                    </div>
                 </div>
             </div>
         </div>
         <div class="section section-news">
             <div class="section-title">
-                <div class="section-title__image">
+                <div class="section-title__image section-title__image--small-pad">
                     <img src="dist/img/section-title-2.png">
                 </div>
-                <div class="section-title__text">
-                   <span class="span-underline">Company news</span>
+                <div class="section-title__text js-animate-show">
+                   <span class="span-underline">
+                        Company news
+                        <div class="span-underline__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#e7e7e7" viewBox="0 0 50 50" version="1.1" width="50px" height="50px">
+                                <g id="surface1">
+                                <path style=" " d="M 50.0625 10.4375 C 48.214844 11.257813 46.234375 11.808594 44.152344 12.058594 C 46.277344 10.785156 47.910156 8.769531 48.675781 6.371094 C 46.691406 7.546875 44.484375 8.402344 42.144531 8.863281 C 40.269531 6.863281 37.597656 5.617188 34.640625 5.617188 C 28.960938 5.617188 24.355469 10.21875 24.355469 15.898438 C 24.355469 16.703125 24.449219 17.488281 24.625 18.242188 C 16.078125 17.8125 8.503906 13.71875 3.429688 7.496094 C 2.542969 9.019531 2.039063 10.785156 2.039063 12.667969 C 2.039063 16.234375 3.851563 19.382813 6.613281 21.230469 C 4.925781 21.175781 3.339844 20.710938 1.953125 19.941406 C 1.953125 19.984375 1.953125 20.027344 1.953125 20.070313 C 1.953125 25.054688 5.5 29.207031 10.199219 30.15625 C 9.339844 30.390625 8.429688 30.515625 7.492188 30.515625 C 6.828125 30.515625 6.183594 30.453125 5.554688 30.328125 C 6.867188 34.410156 10.664063 37.390625 15.160156 37.472656 C 11.644531 40.230469 7.210938 41.871094 2.390625 41.871094 C 1.558594 41.871094 0.742188 41.824219 -0.0585938 41.726563 C 4.488281 44.648438 9.894531 46.347656 15.703125 46.347656 C 34.617188 46.347656 44.960938 30.679688 44.960938 17.09375 C 44.960938 16.648438 44.949219 16.199219 44.933594 15.761719 C 46.941406 14.3125 48.683594 12.5 50.0625 10.4375 Z "/>
+                                </g>
+                            </svg>
+                        </div>
+                    </span>
                 </div>
             </div>
-            <!-- <div class="section-text">
+            <div id="section-news__slider" class="swiper-container">
+            </div>
+            <div class="section-news__nav-wrapper">
+                <div class='swiper-button-prev swiper-button-prev_news'></div>
+                <div class='swiper-button-next swiper-button-next_news'></div>
+            </div>
+            <div class="twitter-link__wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#a01d21" viewBox="0 0 50 50" version="1.1" width="50px" height="50px">
+                    <g id="surface1">
+                    <path style=" " d="M 50.0625 10.4375 C 48.214844 11.257813 46.234375 11.808594 44.152344 12.058594 C 46.277344 10.785156 47.910156 8.769531 48.675781 6.371094 C 46.691406 7.546875 44.484375 8.402344 42.144531 8.863281 C 40.269531 6.863281 37.597656 5.617188 34.640625 5.617188 C 28.960938 5.617188 24.355469 10.21875 24.355469 15.898438 C 24.355469 16.703125 24.449219 17.488281 24.625 18.242188 C 16.078125 17.8125 8.503906 13.71875 3.429688 7.496094 C 2.542969 9.019531 2.039063 10.785156 2.039063 12.667969 C 2.039063 16.234375 3.851563 19.382813 6.613281 21.230469 C 4.925781 21.175781 3.339844 20.710938 1.953125 19.941406 C 1.953125 19.984375 1.953125 20.027344 1.953125 20.070313 C 1.953125 25.054688 5.5 29.207031 10.199219 30.15625 C 9.339844 30.390625 8.429688 30.515625 7.492188 30.515625 C 6.828125 30.515625 6.183594 30.453125 5.554688 30.328125 C 6.867188 34.410156 10.664063 37.390625 15.160156 37.472656 C 11.644531 40.230469 7.210938 41.871094 2.390625 41.871094 C 1.558594 41.871094 0.742188 41.824219 -0.0585938 41.726563 C 4.488281 44.648438 9.894531 46.347656 15.703125 46.347656 C 34.617188 46.347656 44.960938 30.679688 44.960938 17.09375 C 44.960938 16.648438 44.949219 16.199219 44.933594 15.761719 C 46.941406 14.3125 48.683594 12.5 50.0625 10.4375 Z "/>
+                    </g>
+                </svg>
+                <a href="/" class="twitter-link">
+                    All news
+                </a>
+            </div>
+            <!-- <div class="section-text js-animate-show">
                 «Blockchain solutions» company sets a goal to become one of the leading players in the global blockchain industry, along with actively participating in the development of the Russian digital economy. Being a part of SAFMAR financial industrial group, the company is intended to develop the crypto-currency line of business, as well as to promote the current digital technologies implementation into the holding’s work.
             </div> -->
             <!-- <div class="section__details">
@@ -184,7 +215,7 @@
         </div>
         <div class="section section-product">
             <div class="section-title">
-                <div class="section-title__text">
+                <div class="section-title__text js-animate-show">
                     <span class="span-underline">Product</span>
                 </div>
             </div>
@@ -196,12 +227,16 @@
                             <div style="background: url('img/product-1.svg') no-repeat center">
                             </div>
                         </div>
-                        <div class="product-slide__title" touch-action="none">
-                            Bizard Tunnel
+                        <div class="product-slide__title__wrapper">
+                            <div class="product-slide__title" touch-action="none">
+                                Bizard Tunnel
+                            </div>
                         </div>
-                        <div class="product-slide__text">
-                            A service that introduces the long-awaited transparency and openness to the working processes of mining parks and data centers. 
-                            With this application, equipment holders will be able to receive information about the devices operation, make decisions quickly and efficiently and maintain a dialogue with service providers.
+                        <div class="product-slide__text__wrapper">
+                            <div class="product-slide__text">
+                                A service that introduces the long-awaited transparency and openness to the working processes of mining parks and data centers. 
+                                With this application, equipment holders will be able to receive information about the devices operation, make decisions quickly and efficiently and maintain a dialogue with service providers.
+                            </div>
                         </div>
                     </div>
                     <div class="swiper-slide product-slide">
@@ -209,14 +244,18 @@
                             <div style="background:url('img/product-2.svg') no-repeat center">
                             </div>
                         </div>
-                        <div class="product-slide__title" touch-action="none">
-                            Handlet
+                        <div class="product-slide__title__wrapper">
+                            <div class="product-slide__title" touch-action="none">
+                                Handlet
+                            </div>
                         </div>
-                        <div class="product-slide__text">
-                            This unique technology, which is unrivaled throughout the world, will allow to secure digital assets to the greatest possible extent. To identify user the system:
-                            — uses data obtained as a result of scanning the hand;
-                            — transforms it into a part of a private key and makes it impossible to access the wallet by third parties;
-                            — excludes the possibility of loss or theft of the wallet.
+                        <div class="product-slide__text__wrapper">
+                            <div class="product-slide__text">
+                                This unique technology, which is unrivaled throughout the world, will allow to secure digital assets to the greatest possible extent. To identify user the system:
+                                — uses data obtained as a result of scanning the hand;
+                                — transforms it into a part of a private key and makes it impossible to access the wallet by third parties;
+                                — excludes the possibility of loss or theft of the wallet.
+                            </div>
                         </div>
                     </div>
                     <div class="swiper-slide product-slide">
@@ -224,17 +263,25 @@
                             <div style="background: url('img/product-3.svg') no-repeat center">
                             </div>
                         </div>
-                        <div class="product-slide__title" touch-action="none">
-                            Bizard mining
+                        <div class="product-slide__title__wrapper">
+                            <div class="product-slide__title" touch-action="none">
+                                Bizard mining
+                            </div>
                         </div>
-                        <div class="product-slide__text">
-                            More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                        <div class="product-slide__text__wrapper">
+                            <div class="product-slide__text">
+                                More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div> -->
+            </div>
+            <div class="section-product__nav-wrapper">
+                <div class='swiper-button-prev swiper-button-prev_product'></div>
+                <div class='swiper-button-next swiper-button-next_product'></div>
             </div>
         </div>
         <div class="section section-direction">
@@ -246,45 +293,61 @@
                             <div class="direction-slide__image">
                                 <img src="dist/img/direction-slider-1.png">
                             </div>
-                            <div class="direction-slide__title">
-                                <span class="span-underline">2b or not 2b</span><br>
-                                The concept of the company's development involves the improvement of the directions b2b, b2c and b2g
+                            <div class="direction-slide__title__wrapper">
+                                <div class="direction-slide__title">
+                                    <span class="span-underline">2b or not 2b</span><br>
+                                    The concept of the company's development involves the improvement of the directions b2b, b2c and b2g
+                                </div>
                             </div>
-                            <div class="direction-slide__text">
-                                «Blockchain solutions» company sets a goal to become one of the leading players in the global blockchain industry, along with actively participating in the development of the Russian digital economy. Being a part of SAFMAR financial industrial group, the company is intended to develop the crypto-currency line of business, as well as to promote the current digital technologies implementation into the holding’s work.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide direction-slide">
-                        <div class="swiper-slide__container">
-                            <div class="direction-slide__title">
-                                Handlet
-                            </div>
-                            <div class="direction-slide__text">
-                                This unique technology, which is unrivaled throughout the world, will allow to secure digital assets to the greatest possible extent. To identify user the system:
-                                — uses data obtained as a result of scanning the hand;
-                                — transforms it into a part of a private key and makes it impossible to access the wallet by third parties;
-                                — excludes the possibility of loss or theft of the wallet.
+                            <div class="direction-slide__text__wrapper">
+                                <div class="direction-slide__text">
+                                    «Blockchain solutions» company sets a goal to become one of the leading players in the global blockchain industry, along with actively participating in the development of the Russian digital economy. Being a part of SAFMAR financial industrial group, the company is intended to develop the crypto-currency line of business, as well as to promote the current digital technologies implementation into the holding’s work.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide direction-slide">
                         <div class="swiper-slide__container">
-                            <div class="direction-slide__title">
-                                Bizard mining
+                            <div class="direction-slide__title__wrapper">
+                                <div class="direction-slide__title">
+                                    Handlet
+                                </div>
                             </div>
-                            <div class="direction-slide__text">
-                                More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                            <div class="direction-slide__text__wrapper">
+                                <div class="direction-slide__text">
+                                    This unique technology, which is unrivaled throughout the world, will allow to secure digital assets to the greatest possible extent. To identify user the system:
+                                    — uses data obtained as a result of scanning the hand;
+                                    — transforms it into a part of a private key and makes it impossible to access the wallet by third parties;
+                                    — excludes the possibility of loss or theft of the wallet.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="swiper-slide direction-slide">
                         <div class="swiper-slide__container">
-                            <div class="direction-slide__title">
-                                Bizard mining
+                            <div class="direction-slide__title__wrapper">
+                                <div class="direction-slide__title">
+                                    Bizard mining
+                                </div>
                             </div>
-                            <div class="direction-slide__text">
-                                More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                            <div class="direction-slide__text__wrapper">
+                                <div class="direction-slide__text">
+                                    More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide direction-slide">
+                        <div class="swiper-slide__container">
+                            <div class="direction-slide__title__wrapper">
+                                <div class="direction-slide__title">
+                                    Bizard mining
+                                </div>
+                            </div>
+                            <div class="direction-slide__text__wrapper">
+                                <div class="direction-slide__text">
+                                    More than mining. We are developing advanced software that allows you to increase the profit from the production of crypto-currency by 7-15%. Realizing that the technologies are developing rapidly, our specialists carry out permanent work to find new technical solutions, which are subsequently implemented in an open mining park.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -454,7 +517,7 @@
             <div class="section__wrapper">
                 <div class="section-title">
                     <div class="section-title__image section-title__image--small-pad">
-                        <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="66px" height="54px" viewBox="0 0 614 488" enable-background="new 0 0 614 488" xml:space="preserve">
+                        <svg version="1.1" id="contacts-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="66px" height="54px" viewBox="0 0 614 488" enable-background="new 0 0 614 488" xml:space="preserve">
                             <g>
                                 <defs>
                                     <rect id="SVGID_3_contact" x="50" y="38.011" width="516.627" height="406.989"/>
@@ -486,7 +549,7 @@
                             <circle fill="#A01D21" cx="127.834" cy="46.333" r="19.5"/>
                         </svg>
                     </div>
-                    <div class="section-title__text">
+                    <div class="section-title__text js-animate-show">
                         <p>Please email me</p>
                         <p>
                             <span class="span-underline">
@@ -541,7 +604,7 @@
                     <div class="section-title__image section-title__image--small-pad">
                         <img src="dist/img/write-to-us.png">
                     </div>
-                    <div class="section-title__text">
+                    <div class="section-title__text js-animate-show">
                         Write to us -
                     </div>
 
@@ -549,8 +612,10 @@
                         X
                     </div>
                 </div>
-                <div class="section-text">
-                    you are welcome to express your ideas or plans for cooperation with us in no particular format.
+                <div class="section-text__wrapper">
+                    <div class="section-text js-animate-show">
+                        you are welcome to express your ideas or plans for cooperation with us in no particular format.
+                    </div>
                 </div>
                 <form method="GET">
                     <div class="inputs-wrapper">
