@@ -634,7 +634,7 @@ function init() {
   /*** EDITOR ***/
 
 
-  camera = new THREE.PerspectiveCamera(82, $('#stage').width() / $('#stage').height(), 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(94, $('#stage').width() / $('#stage').height(), 0.1, 1000);
   // create a render and set the size
   webGLRenderer = new THREE.WebGLRenderer({ antialias: true , clearAlpha: 1});
   webGLRenderer.setClearColor(new THREE.Color(0xFFFFFF, 1));
@@ -645,7 +645,7 @@ function init() {
   var date = new Date();
   var pn = new Perlin('rnd' + date.getTime());
   var sphereGeom = new THREE.SphereGeometry(25, 50, 50);
-  var sphereGeomRed = new THREE.SphereGeometry(26, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
+  var sphereGeomRed = new THREE.SphereGeometry(32, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
   // save points for later calculation
   for (var i = 0; i < points.length; i++) {
     var vertex = points[i];
@@ -808,18 +808,18 @@ function init() {
   function render() {
     step += 1;
 
-    //scene.rotation.y -= 0.004;
+    scene.rotation.y -= 0.004;
     scene.add(meshRed);
 
-    /*if (step % 785 === 0 && showRed) {
+    if (step % 785 === 0 && showRed) {
       showRed = false;
     } else if (step % 785 === 0 && !showRed) {
       showRed = true;
-    }*/
+    }
     if (showRed) {
-    //  meshRed.rotation.y -= 0.004;
+      meshRed.rotation.y -= 0.004;
     } else {
-    //  meshRed.rotation.y += 0.004;
+      meshRed.rotation.y += 0.004;
     }
 
 
@@ -838,7 +838,7 @@ function init() {
 
     if (intersects && intersects.length) {
       if (!showRed) {
-        inverter = inverter > 50 ? 80 : inverter + 1;
+        inverter = inverter > 40 ? 40 : inverter + 1;
       } else {
         inverter = inverter < 1 ? 1 : inverter - 1;
       }
@@ -847,7 +847,7 @@ function init() {
         if (showRed) {
           value = pn.noise((vertex.x + step)/ 40, vertex.y / 30, 200 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 40, vertex.y / 20, 100 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
