@@ -1,10 +1,6 @@
 var directionSlider, productSlider, newsSlider, maxOpened = 0, menuOpened = false;
 $(document).ready(function() {
 
-
-  $('.js-animate-show, .twitter-link__container').addClass('not-animated');
-  $('.section-title__image:not(.no-a)').addClass('not-animated-opacity');
-
   $('#fullpage').fullpage({
     //options here
     //autoScrolling:true,
@@ -489,6 +485,12 @@ $(document).ready(function() {
   
   if ($(window).width() > 1024) {
     stickyElements('.menu-hidden__close, .mail-hidden__close, .menu, .mail, .share', {stickiness: 5});
+    $('.js-animate-show, .twitter-link__container').addClass('not-animated');
+    $('.section-title__image:not(.no-a)').addClass('not-animated-opacity');
+
+    $(window).on('mouseover', mouseOver);
+    $(window).on('mouseout', mouseOut);
+    $(window).on('mousemove', moveCursor);
   }
 
   init();
@@ -504,20 +506,11 @@ if (isEdEgde) {
 }
 var topoffset;
 function moveCursor(e) {
-  //$cursor.addClass('is-moving');
-  //Swiper.browser
-  //topoffset = isEdEgde ? e.pageY - 31 : e.pageY;
   TweenLite.to($cursor, 0.23, {
     left: e.pageX,
     top: e.pageY,
     ease: Power4.easOut
   });
-  
-  //clearTimeout(timer);
-
-   /*var timer = setTimeout(function() {
-       $cursor.removeClass('is-moving');
-   }, 300);*/
 }
 function mouseOver(e) {
   if ($(e.target).hasClass('hoverable')) {
@@ -532,39 +525,6 @@ function mouseOut(e) {
   }
 }
 
-$(window).on('mouseover', mouseOver);
-$(window).on('mouseout', mouseOut);
-$(window).on('mousemove', moveCursor);
-
-/*var mouseX, mouseY, moved, follower = $('.follower');
-cursorfollow();
-$(document).on("mousemove", function(e) {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-})
-function cursorfollow() {
-    var e = 0, s = 0;
-    setInterval(function() {
-        e += (mouseX - e) / 9,
-        s += (mouseY - s) / 9,
-        follower.css({
-            left: e - 12,
-            top: s - 12
-        })
-    }, 16);
-    $(".cur").on("mouseenter", function() {
-        follower.addClass("active"),
-        cursor.addClass("active"),
-        $(".hover").addClass("hovered"),
-        $(this).removeClass("hovered")
-    }),
-    $(".cur").on("mouseleave", function() {
-        follower.removeClass("active"),
-        cursor.removeClass("active"),
-        $".hover").removeClass("hovered")
-    })
-}*/
-
 
 
 var sphereVerticesArray = [];
@@ -572,23 +532,113 @@ var sphereVerticesNormArray = [];
 var mouseX = 0, mouseY = 0, camera, webGLRenderer,
     windowHalfX = window.innerWidth / 2,
     windowHalfY = window.innerHeight / 2,
-    raycaster, mesh, meshRed, scene, Rgeometry, Rmaterial, Redmaterial, intersects, projector;
+    raycaster, mesh, meshRed, scene, Rgeometry, Rmaterial, Redmaterial, intersects, projector, tgeometry;
 var intersectionPt, mouse;
 
 var tick = 1;
 
+
+
+var raycaster1, mouse1;
+
 function init() {
-  //var stats = initStats();
+
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0xffffff );
-  //scene.fog = new THREE.FogExp2( 0x000000, 0.001 );
 
-  camera = new THREE.PerspectiveCamera(74, $('#stage').width() / $('#stage').height(), 0.1, 1000);
+  /*** EDITOR ***/
+    /*var geometry1 = new THREE.SphereBufferGeometry(25, 50, 50);
+
+    var plane1 = new THREE.Mesh(geometry1, new THREE.MeshBasicMaterial({
+      wireframe: true,
+    }));
+    //scene.add(plane1);
+
+    var points1 = new THREE.Points(geometry1, new THREE.PointsMaterial({
+      size: .5,
+      color: "red",
+      sizeAttenuation: true
+    }));
+    scene.add(points1);
+
+    var raycaster1 = new THREE.Raycaster();
+    raycaster1.params.Points.threshold = 1;
+    var mouse1 = new THREE.Vector2();
+    var intersects1 = null;
+    var plane1 = new THREE.Plane();
+    var planeNormal1 = new THREE.Vector3();
+    var currentIndex1 = null;
+    var planePoint1 = new THREE.Vector3();
+    var dragging1 = false;
+
+    window.addEventListener("mousedown", mouseDown1, false);
+    window.addEventListener("mousemove", mouseMove1, false);
+    window.addEventListener("mouseup", mouseUp1, false);
+
+    function mouseDown1(event) {
+      setRaycaster(event);
+      getIndex();
+      dragging1 = true;
+
+      var positions = geometry1.attributes.position.array;
+      var ptCout = positions.length / 3;
+      var verticles = [];
+      for (var i = 0; i < ptCout; i++)
+      {
+          verticles.push(new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]));
+      }
+      //console.log(geometry1.attributes)
+      console.log(verticles)
+    }
+
+    function mouseMove1(event) {
+      if (dragging1 && currentIndex1 !== null) {
+        setRaycaster(event);
+        raycaster1.ray.intersectPlane(plane1, planePoint1);
+        geometry1.attributes.position.setXYZ(currentIndex1, planePoint1.x, planePoint1.y, planePoint1.z);
+        geometry1.attributes.position.needsUpdate = true;
+      }
+    }
+
+    function mouseUp1(event) {
+      dragging1 = false;
+      currentIndex1 = null;
+    }
+
+    function getIndex() {
+      intersects1 = raycaster1.intersectObject(points1);
+      if (intersects1.length === 0) {
+        currentIndex1 = null;
+        return;
+      }
+      currentIndex1 = intersects1[0].index;
+      setPlane(intersects1[0].point);
+    }
+
+    function setPlane(point) {
+      planeNormal1.subVectors(camera.position, point).normalize();
+      plane1.setFromNormalAndCoplanarPoint(planeNormal1, point);
+    }
+
+    function setRaycaster(event) {
+
+      getMouse(event);
+      raycaster1.setFromCamera(mouse1, camera);
+    }
+
+    function getMouse(event) {
+      mouse1.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse1.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }*/
+
+  /*** EDITOR ***/
+
+
+  camera = new THREE.PerspectiveCamera(82, $('#stage').width() / $('#stage').height(), 0.1, 1000);
   // create a render and set the size
   webGLRenderer = new THREE.WebGLRenderer({ antialias: true , clearAlpha: 1});
   webGLRenderer.setClearColor(new THREE.Color(0xFFFFFF, 1));
   webGLRenderer.setSize($('#stage').width(), $('#stage').height());
-  //webGLRenderer.shadowMap.enabled = true;
   webGLRenderer.setPixelRatio( window.devicePixelRatio );
 
 
@@ -597,8 +647,8 @@ function init() {
   var sphereGeom = new THREE.SphereGeometry(25, 50, 50);
   var sphereGeomRed = new THREE.SphereGeometry(26, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
   // save points for later calculation
-  for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
-    var vertex = sphereGeom.vertices[i];
+  for (var i = 0; i < points.length; i++) {
+    var vertex = points[i];
     var vec = new THREE.Vector3(vertex.x, vertex.y, vertex.z);
     sphereVerticesArray.push(vec);
     var mag = vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
@@ -607,14 +657,8 @@ function init() {
     sphereVerticesNormArray.push(norm);
   }
 
-
-  //console.log(sphereVerticesArray)
-
-  //var sphere = THREE.SceneUtils.createMultiMaterialObject(sphereGeom, []);
-
-  //var MAX_POINTS = 500;
   var geometry = new THREE.Geometry();
-  var tgeometry = new THREE.Geometry();
+  tgeometry = new THREE.Geometry();
   var lgeometry = new THREE.Geometry();
   var sgeometry = new THREE.Geometry();
   var ssgeometry = new THREE.Geometry();
@@ -637,8 +681,6 @@ function init() {
     // return a texture made from the canvas
     return texture;
   }
-  
-  //var positions = new Float32Array( MAX_POINTS * 3 ); // 3 vertices per point
 
   var tmaterial = new THREE.PointsMaterial({
       size: 0.2,
@@ -646,11 +688,11 @@ function init() {
       transparent: true,
       depthWrite: false,
       alphaTest: 0.5,
-      opacity: 1,
+      opacity: 0.65,
    });
   var lmaterial = new THREE.LineBasicMaterial({
       color: 0xdddddd,
-      opacity: 1,
+      opacity: 0.5,
       transparent: true,
   });
 
@@ -671,33 +713,6 @@ function init() {
     alphaTest: 0.5
   });
 
-/*  var smaterial = new THREE.PointsMaterial( { 
-    size: 2.5, 
-    sizeAttenuation: true, 
-    map: sprite, 
-    alphaTest: 0.5, 
-    transparent: true,
-    blending: THREE.NoBlending,
-    color: 0xFFFFFF,
-    fog: false, } );
-  var ssmaterial = new THREE.PointsMaterial( { 
-    size: 2.2, 
-    sizeAttenuation: true, 
-    map: sprite, 
-    alphaTest: 0.5, 
-    transparent: true,
-    color: 0xFFFFFF,
-    blending: THREE.NoBlending,
-    fog: false, } );*/
- 
-
-  //ssmaterial.color.setHSL( 1.0, 0.3, 0.7 );
-  //smaterial.color.setHSL( 1.0, 0.3, 0.7 );
-  //var ssmaterial = new THREE.PointsMaterial( { size: 5, color: 0xa01d21 } );
-  //var smaterial = new THREE.PointsMaterial( { size: 5, color: 0xa01d21 } );
-  //smaterial.color.setHSL( 1.0, 0.3, 0.7 );
-
-
   //material and scene defined in question
   var pointCloud = new THREE.Points(tgeometry, tmaterial);
 
@@ -713,8 +728,6 @@ function init() {
     svertex.z = (Math.random() * 2 - 1);
     svertex.normalize();
     svertex.multiplyScalar(Math.random() * 20 + 4);
-   /* sgeometry.vertices.push(svertex);
-    svertex.multiplyScalar( Math.random() * 0.09 + 1 );*/
     sgeometry.vertices.push(svertex);
   }
 
@@ -730,11 +743,6 @@ function init() {
     ssgeometry.vertices.push(svertex);
   }
 
-
-
-  //scene.add(sphere);
-  //scene.add(pointCloud);
-  //scene.add(lineCloud);
   scene.add(randomCloud);
   scene.add(randomMovingCloud);
 
@@ -742,11 +750,7 @@ function init() {
   camera.position.x = 0;
   camera.position.y = 0;
   camera.position.z = 50;
-  //camera.lookAt(new THREE.Vector3(0, 0, 55));
 
-
-  //var orbitControls = new THREE.OrbitControls(camera);
-  //orbitControls.autoRotate = false;
   var clock = new THREE.Clock();
 
   raycaster = new THREE.Raycaster();
@@ -754,7 +758,6 @@ function init() {
   projector = new THREE.Projector();
 
  // geometry
-  //Rgeometry = new THREE.SphereGeometry( 25, 50, 50 );
   
   // material
   Rmaterial = new THREE.MeshPhongMaterial({
@@ -783,17 +786,7 @@ function init() {
   intersectionPt.vertices.push(new THREE.Vector3( 0, 0, 0));
   var dotMaterial = new THREE.PointsMaterial( { size: 0, sizeAttenuation: false } );
   var dot = new THREE.Points( intersectionPt, dotMaterial );
-  scene.add( dot );
-
-  // add subtle ambient lighting
-  /*var light = new THREE.AmbientLight( 0x000000 ); // soft white light
-  scene.add( light );
-*/
-  // add spotlight for the shadows
-  /*var spotLight = new THREE.DirectionalLight(0x000000);
-  spotLight.position.set(0, 30, 40);
-  spotLight.intensity = 20;
-  scene.add(spotLight);*/
+  //scene.add( dot );
 
   // add the output of the renderer to the html element
   $("#stage").append(webGLRenderer.domElement);
@@ -806,6 +799,7 @@ function init() {
   document.addEventListener( 'touchstart', onDocumentTouchStart, false );
   document.addEventListener( 'touchmove', onDocumentTouchMove, false );
   window.addEventListener( 'resize', onWindowResize, false );
+  document.addEventListener( 'click', onMouseClick, false);
 
   meshRed.rotation.set( 0, -3*Math.PI/2, 0 );
 
@@ -814,18 +808,18 @@ function init() {
   function render() {
     step += 1;
 
-    scene.rotation.y -= 0.004;
+    //scene.rotation.y -= 0.004;
     scene.add(meshRed);
 
-    if (step % 785 === 0 && showRed) {
+    /*if (step % 785 === 0 && showRed) {
       showRed = false;
     } else if (step % 785 === 0 && !showRed) {
       showRed = true;
-    }
+    }*/
     if (showRed) {
-      meshRed.rotation.y -= 0.004;
+    //  meshRed.rotation.y -= 0.004;
     } else {
-      meshRed.rotation.y += 0.004;
+    //  meshRed.rotation.y += 0.004;
     }
 
 
@@ -838,24 +832,22 @@ function init() {
     scene.remove(pointCloud);
     scene.remove(lineCloud);
 
-    //scene.remove(randomMovingCloud);
-    //scene.remove(randomCloud);
     tgeometry.vertices = [];
     lgeometry.vertices = [];
-    //sgeometry.vertices = [];
+
 
     if (intersects && intersects.length) {
       if (!showRed) {
-        inverter = inverter > 50 ? 50 : inverter + 1;
+        inverter = inverter > 50 ? 80 : inverter + 1;
       } else {
         inverter = inverter < 1 ? 1 : inverter - 1;
       }
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i], value;
         if (showRed) {
-          value = pn.noise((vertex.x + step / 2)/ 40, vertex.y / 30, 200 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 40, vertex.y / 30, 200 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step / 2)/ 30, vertex.y / 20, 100 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
@@ -881,7 +873,7 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i];
 
-        var value = pn.noise((vertex.x + step / 2)/ 30, vertex.y / 20, 100 + vertex.z / 10);
+        var value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (inverter / 10)) * inverter / 50;
         vertex.y = sphereVerticesArray[i].y + (sphereVerticesNormArray[i].y * value * (inverter / 10)) * inverter / 50;
@@ -903,7 +895,6 @@ function init() {
     }
 
     
-    //console.log(vertex.x)
     sphereGeom.computeFaceNormals();
     sphereGeom.computeVertexNormals();
 
@@ -922,33 +913,13 @@ function init() {
     sgeometry.verticesNeedUpdate = true;
 
 
-    //scene.add(sphere);
-    /*if (step % 500 == 0 ) {
-        tick *= -1;
-    }*/
     var rotateX = randomMovingCloud.rotation.x - 0.003// Math.sin(delta / 5) * tick;
     var rotateY = randomMovingCloud.rotation.y - 0.001// Math.sin(delta / 2) * tick;
     var rotateZ = randomMovingCloud.rotation.z - 0.001// Math.sin(delta / 5) * tick;
     randomMovingCloud.rotation.set( rotateX, rotateY, rotateZ );
-    //randomMovingCloud.translateZ(Math.sin(delta) * tick);
 
     scene.add(pointCloud);
     scene.add(lineCloud);
-
-    //timeToRed += delta;
-    
-    //scene.add(randomMovingCloud);
-    //scene.add(randomCloud);
-
-    /*camera.position.x += ( mouseX - camera.position.x ) * .0002;
-    camera.position.y += ( - mouseY + 200 - camera.position.y ) * .0002;
-    camera.lookAt( scene.position );*/
-    
-    // render using requestAnimationFrame
-
-    /*camera.position.x += ( mouseX - camera.position.x ) * 0.0001;
-    camera.position.y += ( - mouseY - camera.position.y ) * 0.0001;
-    camera.lookAt( scene.position );*/
 
     requestAnimationFrame(render);
     webGLRenderer.render(scene, camera);
@@ -971,21 +942,15 @@ function onMouseMove( event ) {
   }
 }
 
+function onMouseClick(e) {
+  console.log(tgeometry.vertices)
+}
+
 function onMouseDown( event ) {
   // calculate mouse position in normalized device coordinates
   // (-1 to +1) for both components
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;   
-  /*raycaster.setFromCamera( mouse, camera );
-  var intersects = raycaster.intersectObjects( scene.children );
-
-  if (intersects.length > 0) {
-    for (var i=0; i<Rgeometry.vertices.length; i++) {
-      Rgeometry.vertices[i].multiplyScalar(1.2);
-    }
-    Rgeometry.verticesNeedUpdate = true;
-  }
-  Rgeometry.computeBoundingSphere();*/
 
 }
 function onDocumentMouseMove( event ) {
