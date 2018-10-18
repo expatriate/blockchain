@@ -702,6 +702,10 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   object-fit: cover;
   margin-top: 10px; }
 
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+  .news-slide__media {
+    height: 160px; } }
+
 @media screen and (max-width: 720px) {
   .news-slide__media img {
     height: 130px; } }
@@ -753,7 +757,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   color: #3e3e3e; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     .news-slide__tweet {
-      font-size: 16px; } }
+      font-size: 14px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     .news-slide__tweet {
       font-size: 14px; } }
@@ -1030,6 +1034,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 .section-title {
   margin-bottom: 64px;
   position: relative; }
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    .section-title {
+      margin-bottom: 48px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     .section-title {
       margin-bottom: 48px; } }
@@ -1142,7 +1149,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       max-width: 530px; } }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     .section-team-red {
-      padding: 48px 64px 48px 48px;
+      padding: 36px 48px 36px 36px;
       max-width: 700px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     .section-team-red {
@@ -1185,9 +1192,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     font-size: 25px;
     font-family: 'LatoRegular';
     line-height: 1.8; }
-    @media screen and (min-width: 1024px) and (max-width: 1600px) {
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
       .section-team-red__text {
-        font-size: 18px; } }
+        font-size: 16px; } }
     @media screen and (min-width: 720px) and (max-width: 1024px) {
       .section-team-red__text {
         font-size: 14px;
@@ -1346,7 +1353,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
 .menu-hidden__close {
   right: 70px;
-  top: 70px; }
+  top: -70px; }
   @media screen and (max-width: 720px) {
     .menu-hidden__close {
       display: none; } }

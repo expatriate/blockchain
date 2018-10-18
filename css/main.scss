@@ -396,6 +396,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       object-fit: cover;
       margin-top: 10px;
     }
+    @media screen and (min-width: 1024px) and (max-width: 1400px) {
+      height: 160px;
+    }
     @media screen and (max-width: 720px) {
       img {
         height: 130px;
@@ -448,7 +451,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     font-family: 'LatoRegular';
     color: #3e3e3e;
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
-      font-size: 16px;
+      font-size: 14px;
     }
     @media screen and (min-width: 720px) and (max-width: 1024px) {
       font-size: 14px;
@@ -752,7 +755,10 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 .section-title {
   margin-bottom: 64px;
   position: relative;
-  
+
+  @media screen and (min-width: 1024px) and (max-width: 1400px) {
+    margin-bottom: 48px;
+  }  
   @media screen and (min-width: 720px) and (max-width: 1024px) {
     margin-bottom: 48px;
   }
@@ -872,7 +878,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       max-width: 530px;
     }
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
-      padding: 48px 64px 48px 48px;
+      padding: 36px 48px 36px 36px;
       max-width: 700px;
     }
     @media screen and (min-width: 720px) and (max-width: 1024px) {
@@ -924,8 +930,8 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
       font-family: 'LatoRegular';
       line-height: 1.8;
 
-      @media screen and (min-width: 1024px) and (max-width: 1600px) {
-        font-size: 18px;
+      @media screen and (min-width: 1024px) and (max-width: 1400px) {
+        font-size: 16px;
       }
       @media screen and (min-width: 720px) and (max-width: 1024px) {
         font-size: 14px;
@@ -1111,7 +1117,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 .menu-hidden {
   &__close {
     right: 70px;
-    top: 70px;
+    top: -70px;
     @media screen and (max-width: 720px) {
       display: none;
     }

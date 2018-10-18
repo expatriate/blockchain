@@ -721,13 +721,13 @@ function init() {
   randomCloud.sortParticles = true;
   var randomMovingCloud = new THREE.Points(ssgeometry, ssmaterial);  
 
-  for (var i = 0; i < 200; i++ ) {
+  for (var i = 0; i < 100; i++ ) {
     var svertex = new THREE.Vector3();
     svertex.x = (Math.random() * 2 - 1);
     svertex.y = (Math.random() * 2 - 1);
     svertex.z = (Math.random() * 2 - 1);
     svertex.normalize();
-    svertex.multiplyScalar(Math.random() * 20 + 6);
+    svertex.multiplyScalar(Math.random() * 20 + 7);
     sgeometry.vertices.push(svertex);
   }
 
@@ -737,7 +737,7 @@ function init() {
     svertex.y = (Math.random() * 2 - 1) * 1;
     svertex.z = (Math.random() * 2 - 1);
     svertex.normalize();
-    svertex.multiplyScalar(18);
+    svertex.multiplyScalar(16);
     ssgeometry.vertices.push(svertex);
     svertex.multiplyScalar( Math.random() * 0.2 + 1 );
     ssgeometry.vertices.push(svertex);
