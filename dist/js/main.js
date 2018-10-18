@@ -634,7 +634,7 @@ function init() {
   /*** EDITOR ***/
 
 
-  camera = new THREE.PerspectiveCamera(94, $('#stage').width() / $('#stage').height(), 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(106, $('#stage').width() / $('#stage').height(), 0.1, 1000);
   // create a render and set the size
   webGLRenderer = new THREE.WebGLRenderer({ antialias: true , clearAlpha: 1});
   webGLRenderer.setClearColor(new THREE.Color(0xFFFFFF, 1));
@@ -644,8 +644,8 @@ function init() {
 
   var date = new Date();
   var pn = new Perlin('rnd' + date.getTime());
-  var sphereGeom = new THREE.SphereGeometry(25, 50, 50);
-  var sphereGeomRed = new THREE.SphereGeometry(32, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
+  var sphereGeom = new THREE.SphereGeometry(19, 50, 50);
+  var sphereGeomRed = new THREE.SphereGeometry(34, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
   // save points for later calculation
   for (var i = 0; i < points.length; i++) {
     var vertex = points[i];
@@ -727,7 +727,7 @@ function init() {
     svertex.y = (Math.random() * 2 - 1);
     svertex.z = (Math.random() * 2 - 1);
     svertex.normalize();
-    svertex.multiplyScalar(Math.random() * 20 + 4);
+    svertex.multiplyScalar(Math.random() * 20 + 6);
     sgeometry.vertices.push(svertex);
   }
 
@@ -737,7 +737,7 @@ function init() {
     svertex.y = (Math.random() * 2 - 1) * 1;
     svertex.z = (Math.random() * 2 - 1);
     svertex.normalize();
-    svertex.multiplyScalar(16);
+    svertex.multiplyScalar(18);
     ssgeometry.vertices.push(svertex);
     svertex.multiplyScalar( Math.random() * 0.2 + 1 );
     ssgeometry.vertices.push(svertex);
@@ -847,7 +847,7 @@ function init() {
         if (showRed) {
           value = pn.noise((vertex.x + step)/ 40, vertex.y / 30, 200 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step)/ 40, vertex.y / 20, 100 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
