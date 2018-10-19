@@ -310,6 +310,9 @@ $(document).ready(function() {
   $('.mail').on('click', function() {
     $('.mail-hidden').css({display:'block'}).animate({opacity: 1}, 200);
     $.fn.fullpage.setAllowScrolling(false);
+    $('.thankyou_message').css({'display': 'none'});
+    $('.form-elements').css({'display': 'block'});
+    
     $('.mouse').hide();
     startWritetousAnimation();
   });
@@ -334,6 +337,7 @@ $(document).ready(function() {
 
       $('.menu').addClass('opened');
     } else {
+
       $('.menu-hidden').animate({opacity: 0}, 200, function() {
         $('.menu-hidden').css({display:'none'})
       });
@@ -362,7 +366,7 @@ $(document).ready(function() {
   });
 
   $('.menu-hidden__items').on('click', function() {
-    $('.menu-hidden__close').click();
+    $('#menu').click();
   });
 
 
@@ -476,12 +480,6 @@ $(document).ready(function() {
       $('.mouse').show();
     }
   });
-
-/*  stickyElements('.menu-link', {
-    stickiness: 5,
-    duration: 450
-  });
-*/
   
   if ($(window).width() > 1024) {
     stickyElements('.menu-hidden__close, .mail-hidden__close, .menu, .mail, .share', {stickiness: 5});
@@ -644,11 +642,11 @@ function init() {
 
   var date = new Date();
   var pn = new Perlin('rnd' + date.getTime());
-  var sphereGeom = new THREE.SphereGeometry(19, 50, 50);
+  var sphereGeom = new THREE.SphereGeometry(32, 50, 50);
   var sphereGeomRed = new THREE.SphereGeometry(34, 30, 30, Math.PI/2, Math.PI, 0, Math.PI);
   // save points for later calculation
-  for (var i = 0; i < points.length; i++) {
-    var vertex = points[i];
+  for (var i = 0; i < sphereGeom.vertices.length; i++) {
+    var vertex = sphereGeom.vertices[i];
     var vec = new THREE.Vector3(vertex.x, vertex.y, vertex.z);
     sphereVerticesArray.push(vec);
     var mag = vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
@@ -795,11 +793,10 @@ function init() {
   var inverter = 1;
   var timeToRed = 0 , showRed = false, ticktonext = 0;
 
-  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+/*  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-  document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+  document.addEventListener( 'touchmove', onDocumentTouchMove, false );*/
   window.addEventListener( 'resize', onWindowResize, false );
-  document.addEventListener( 'click', onMouseClick, false);
 
   meshRed.rotation.set( 0, -3*Math.PI/2, 0 );
 
@@ -845,9 +842,9 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i], value;
         if (showRed) {
-          value = pn.noise((vertex.x + step)/ 40, vertex.y / 30, 200 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 30, vertex.y / 30, 100 + vertex.z / 10);
         } else {
-          value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
+          value = pn.noise((vertex.x + step)/ 20, vertex.y / 20, 50 + vertex.z / 10);
         }
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (showRed ? (inverter / 10) : 5)) * inverter / 50;
@@ -873,7 +870,7 @@ function init() {
       for (var i = 0; i < sphereGeom.vertices.length; i += 1) {
         var vertex = sphereGeom.vertices[i];
 
-        var value = pn.noise((vertex.x + step)/ 30, vertex.y / 20, 100 + vertex.z / 10);
+        var value = pn.noise((vertex.x + step)/ 20, vertex.y / 20, 50 + vertex.z / 10);
 
         vertex.x = sphereVerticesArray[i].x + (sphereVerticesNormArray[i].x * value * (inverter / 10)) * inverter / 50;
         vertex.y = sphereVerticesArray[i].y + (sphereVerticesNormArray[i].y * value * (inverter / 10)) * inverter / 50;
@@ -913,9 +910,9 @@ function init() {
     sgeometry.verticesNeedUpdate = true;
 
 
-    var rotateX = randomMovingCloud.rotation.x - 0.003// Math.sin(delta / 5) * tick;
-    var rotateY = randomMovingCloud.rotation.y - 0.001// Math.sin(delta / 2) * tick;
-    var rotateZ = randomMovingCloud.rotation.z - 0.001// Math.sin(delta / 5) * tick;
+    var rotateX = randomMovingCloud.rotation.x - 0.003;
+    var rotateY = randomMovingCloud.rotation.y - 0.001;
+    var rotateZ = randomMovingCloud.rotation.z - 0.001;
     randomMovingCloud.rotation.set( rotateX, rotateY, rotateZ );
 
     scene.add(pointCloud);
@@ -942,18 +939,12 @@ function onMouseMove( event ) {
   }
 }
 
-function onMouseClick(e) {
-  console.log(tgeometry.vertices)
-}
-
 function onMouseDown( event ) {
-  // calculate mouse position in normalized device coordinates
-  // (-1 to +1) for both components
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;   
 
 }
-function onDocumentMouseMove( event ) {
+/*function onDocumentMouseMove( event ) {
   mouseX = event.clientX - windowHalfX;
   mouseY = event.clientY - windowHalfY;
 }
@@ -970,7 +961,7 @@ function onDocumentTouchMove( event ) {
     mouseX = event.touches[ 0 ].pageX - windowHalfX;
     mouseY = event.touches[ 0 ].pageY - windowHalfY;
   }
-}
+}*/
  function onWindowResize() {
   windowHalfX = window.innerWidth / 2;
   windowHalfY = window.innerHeight / 2;
@@ -986,333 +977,3 @@ function onDocumentTouchMove( event ) {
   $('#stage').css({width: customHeight, height: customHeight})
   webGLRenderer.setSize( customHeight, customHeight );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*var SCREEN_WIDTH = $('#stage').width(),
-    SCREEN_HEIGHT = $('#stage').height(),
-    mouseX = 0, mouseY = 0,
-    windowHalfX = $('#stage').width() / 2,
-    windowHalfY = $('#stage').height() / 2,
-    camera, scene, renderer, particles = [], randpoints = [],
-    phi, theta, i = 0, delta = 0;
-  init();
-  animate();
-  function init() {
-    var container, particle, vertex, vertex2, geometry, prevVars;
-    container = document.createElement( 'div' );
-    document.getElementById('stage').appendChild( container );
-    camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
-    camera.position.z = 1000;
-    
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
-    renderer = new THREE.CanvasRenderer();
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-    container.appendChild( renderer.domElement );
-    // particles
-    var PI2 = Math.PI * 2;
-    var material = new THREE.SpriteCanvasMaterial( {
-      color: 0xDFDFDF,
-      //color: 0x000000,
-      program: function ( context ) {
-        context.beginPath();
-        context.arc( 0, 0, 0.5, 0, 2 * Math.PI, true );
-        context.fill();
-      }
-    } );
-
-    var materialRand = new THREE.SpriteCanvasMaterial( {
-      color: 0xa01d21,
-      //color: 0x000000,
-      program: function ( context ) {
-        context.beginPath();
-        context.arc( 0, 0, 0.5, 0, 2 * Math.PI, true );
-        context.fill();
-      }
-    } );
-
-    let maxVal = 100;
-    let _maxVal = Math.PI * 2 / maxVal;
-
-    var vertices = [], poss = [], j;
-
-    var latitude = 0; // x 
-    var longitude = 0; // y
-
-    //for (var i = 0; i < maxVal; i ++) {
-    while (longitude < 360) {
-
-      phi = (latitude/180) * Math.PI;
-      theta = (longitude/180) * Math.PI;
-
-      particles[i] = new THREE.Sprite( material );
-      particles[i].position.x = Math.cos(theta) * Math.sin(phi );//  Math.random() * 2 - 1;//Math.random() * 2 - 1;
-      particles[i].position.z = Math.sin(theta) * Math.sin(phi );
-      particles[i].position.y = Math.cos(phi);
-
-      
-      particles[i].position.normalize();
-      particles[i].position.multiplyScalar( 500 );
-      particles[i].scale.multiplyScalar( 6 );
-
-      if (i > 0) {
-        vertex = new THREE.Vector3(prevVars[0], prevVars[1], prevVars[2]);
-        vertex.normalize();
-        vertex.multiplyScalar( 500 );
-
-        vertex2 = new THREE.Vector3(particles[i].position.x, particles[i].position.y, particles[i].position.z);
-        vertex2.normalize();
-        vertex2.multiplyScalar( 500 );
-        vertices.push( vertex );
-        vertices.push( vertex2 );
-      }
-
-      prevVars = [particles[i].position.x, particles[i].position.y, particles[i].position.z];
-      scene.add(particles[i]);
-
-      poss.push({x:particles[i].position.x, y:particles[i].position.y, z:particles[i].position.z})
-
-      latitude += 9;
-      if (latitude > 360) {
-        latitude = 0;
-        longitude += 9;
-      }
-      i++;
-    }
-
-    for (var i = 0; i < 50; i++ ) {
-      randpoints[i] = new THREE.Sprite( materialRand );
-      randpoints[i].position.x = Math.random() * 2 - 1;
-      randpoints[i].position.y = Math.random() * 2 - 1;
-      randpoints[i].position.z = Math.random() * 2 - 1;
-
-      randpoints[i].position.normalize();
-      randpoints[i].scale.multiplyScalar( 20 + Math.random() * 10 );
-      if (i > 50/2) {
-        randpoints[i].position.multiplyScalar( 480 );
-      } else {
-        randpoints[i].position.multiplyScalar( 200 + Math.random() * 300 );
-      }
-
-      scene.add(randpoints[i]);
-    }
-    geometry = new THREE.BufferGeometry().setFromPoints( vertices );
-    var line = new THREE.LineSegments( geometry, new THREE.LineBasicMaterial( { color: 0xEFEFEF } ) );
-    scene.add( line );
-
-
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-    //
-    window.addEventListener( 'resize', onWindowResize, false );
-  }
-  function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-  }
-  //
-  function onDocumentMouseMove( event ) {
-    mouseX = event.clientX - windowHalfX;
-    mouseY = event.clientY - windowHalfY;
-  }
-  function onDocumentTouchStart( event ) {
-    if ( event.touches.length > 1 ) {
-      event.preventDefault();
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
-      mouseY = event.touches[ 0 ].pageY - windowHalfY;
-    }
-  }
-  function onDocumentTouchMove( event ) {
-    if ( event.touches.length == 1 ) {
-      event.preventDefault();
-      mouseX = event.touches[ 0 ].pageX - windowHalfX;
-      mouseY = event.touches[ 0 ].pageY - windowHalfY;
-    }
-  }
-  //
-  function animate() {
-    requestAnimationFrame( animate );
-    console.log(animate)
-    render();
-  }
-
-  function render() {
-    camera.position.x += ( mouseX - camera.position.x ) * .05;
-    //camera.position.x += 2;
-    //scene.rotation.y -= 0.005;
-    //camera.position.y += 2;
-
-    for(var i = 0; i < randpoints.length / 2; i++) {
-      randpoints[i].translateX((Math.random() * 2 - 1) * 20);
-    }
-    camera.position.y += ( - mouseY + 200 - camera.position.y ) * .05;
-    camera.lookAt( scene.position );
-    renderer.render( scene, camera );
-    delta
-  }
-*/
-/*
-
-var canvas = document.getElementById('stage');
-var ctx = canvas.getContext('2d');
-
-// even distribution on sphere
-// @link: https://en.wikibooks.org/wiki/Mathematica/Uniform_Spherical_Distribution
-// @link: https://stackoverflow.com/a/44164075
-
-// point set
-var numOfPoints = 2000, numOfPointsCount = 2000;
-var points = [];
-
-// create points
-for (var i = 0; i < numOfPointsCount; i++) {
-  //var theta = Math.PI * i * (12 + Math.sqrt(60)) * 1/11;
-  var theta = Math.PI/2 * i * (2 + Math.sqrt(5));
-  var phi = Math.acos(i / numOfPoints - 1); 
-  points.push({
-    x: Math.sin(phi) * Math.cos(theta),
-    y: Math.cos(phi) * Math.cos(theta),
-    z: Math.sin(phi) * Math.sin(theta),
-  });
-}
-
-// create perspective matrix
-var p = mat4.create();
-mat4.perspective(p, 30, canvas.clientWidth / canvas.clientHeight, 0, 100);
-
-// since we draw thing on canvas
-// it is using the left-handed coordinate system
-// x-axis points from left to right
-// y-axis points from up to down
-// z-axis points outward from screen
-
-// create view matrix
-var v = mat4.create();
-var eye = vec3.fromValues(1, -1, 2);
-var center = vec3.fromValues(0, 0, 0);
-var up = vec3.fromValues(0, -1, 0);
-mat4.lookAt(v, eye, center, up);
-
-// create model matrix
-var m = mat4.create();
-
-var halfWidth = canvas.clientWidth / 2;
-var halfHeight = canvas.clientHeight / 2;
-
-function loop() {
-
-  // rotate sphere by rotate its model matrix
-  mat4.rotateY(m, m, Math.PI/ 3000);
-  
-  // create pvm matrix
-  var vm = mat4.create();
-  mat4.multiply(vm, v, m);
-  var pvm = mat4.create();
-  mat4.multiply(pvm, p, vm);
-
-
-  // clear screen
-  ctx.fillStyle = "#FFFFFF";
-  ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-
-  ctx.save();
-  ctx.translate(halfWidth, halfHeight);
-
-  // draw center
-  //ctx.fillStyle = "#FF0000";
-  //ctx.fillRect(0, 0, 5, 5);
-  let tempVar = 10;
-  // draw points
-  for (var i = 0; i < numOfPointsCount; i++) {
-    var point = vec3.fromValues(points[i].x, points[i].y, points[i].z);
-
-    // calculate color by depth
-    var localPoint = vec3.create();
-    vec3.transformMat4(localPoint, point, m);
-    ctx.fillStyle = "rgba(0,0,0," + ((localPoint[2] + 1) / 2) + ")";
-
-    // calculate point size
-    var pSize = (localPoint[2] + 1);
-
-    // calculate screen position by apply pvm matrix to point
-    var screenPoint = vec3.create();
-    vec3.transformMat4(screenPoint, point, pvm);
-
-    // draw point
-    ctx.fillRect(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight, pSize, pSize);
-
-    if (i + 1 < numOfPointsCount) {
-      var pointTo = vec3.fromValues(points[i+1].x, points[i+1].y, points[i+1].z);
-      var screenPoint_line = vec3.create();
-      vec3.transformMat4(screenPoint_line, pointTo, pvm);
-      ctx.beginPath(); 
-      // Staring point (10,45)
-      ctx.moveTo(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight);
-      // End point (180,47)
-      ctx.lineTo(screenPoint_line[0] * halfWidth, screenPoint_line[1] * halfHeight);
-      // Make the line visible
-      ctx.stroke();
-      //ctx.fillRect(screenPoint[0] * halfWidth, screenPoint[1] * halfHeight, 20 , pSize);
-      //ctx.stroke();
-    }
-    
-  }
-
-  ctx.restore();
-
-  requestAnimationFrame(loop);
-}
-
-loop();
-
-*/

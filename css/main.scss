@@ -691,6 +691,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     width: 2px;
     height: 2px;
     border-radius: 10px;
+    background: #d60524; 
     border:4px solid #d60524;
     position: absolute;
     right: 10px;
@@ -1432,6 +1433,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     outline: none;
     transition: transform 1s ease;
     transform: translate(0, 0);
+    cursor: inherit;
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 36px;
@@ -1471,6 +1473,13 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 
 .hoverable {
   cursor: none;
+}
+
+.thankyou_message {
+  h2 {
+    font-size: 36px;
+    font-family: 'LatoRegular';
+  }
 }
 
 
