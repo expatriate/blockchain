@@ -1,10 +1,14 @@
 var directionSlider, productSlider, newsSlider, maxOpened = 0, menuOpened = false;
+
+
+// Change this to get another twtr account
+var tweeterLink = 'bcs';
+
+
+
 $(document).ready(function() {
 
   $('#fullpage').fullpage({
-    //options here
-    //autoScrolling:true,
-    //scrollHorizontally: true,
     menu: '#menu',
     fixedElements: '#menu, #header, #footer, .mail, .share, .follower, #mouse',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
@@ -12,8 +16,6 @@ $(document).ready(function() {
     recordHistory: false,
 
     onLeave: function(origin, destination, direction) {
-
-      //console.log(destination)
 
       // Hide SAFMAR logo
       if (!destination.isFirst) {
@@ -94,7 +96,7 @@ $(document).ready(function() {
   });*/
 
   var configList = {
-    "profile": {"screenName": 'bcs'},
+    "profile": {"screenName": tweeterLink},
     "domId": 'section-news__slider',
     "maxTweets": 10,
     "enableLinks": true,
@@ -944,24 +946,6 @@ function onMouseDown( event ) {
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;   
 
 }
-/*function onDocumentMouseMove( event ) {
-  mouseX = event.clientX - windowHalfX;
-  mouseY = event.clientY - windowHalfY;
-}
-function onDocumentTouchStart( event ) {
-  if ( event.touches.length > 1 ) {
-    event.preventDefault();
-    mouseX = event.touches[ 0 ].pageX - windowHalfX;
-    mouseY = event.touches[ 0 ].pageY - windowHalfY;
-  }
-}
-function onDocumentTouchMove( event ) {
-  if ( event.touches.length == 1 ) {
-    event.preventDefault();
-    mouseX = event.touches[ 0 ].pageX - windowHalfX;
-    mouseY = event.touches[ 0 ].pageY - windowHalfY;
-  }
-}*/
  function onWindowResize() {
   windowHalfX = window.innerWidth / 2;
   windowHalfY = window.innerHeight / 2;
