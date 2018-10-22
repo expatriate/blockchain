@@ -656,7 +656,7 @@ body, html {
   .follower.is-hidden {
     opacity: 0; }
 
-body, html, .section, a, input, button, textarea {
+body:not(.d), html:not(.d), .section, a:not(.d), input:not(.d), button:not(.d), textarea:not(.d) {
   cursor: url("../img/cursor.svg"), url("../img/cursor.cur"), auto; }
 
 a:not(.no-border):not([data-scribe="element:user_link"]) {
@@ -670,7 +670,7 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     -webkit-transition: all 0.6s ease;
     transition: all 0.6s ease; }
 
-.section {
+.section, .section-d {
   padding-left: 280px;
   padding-right: 200px;
   width: 100%;
@@ -678,23 +678,26 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   position: relative;
   margin: auto; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
-    .section {
+    .section, .section-d {
       padding-left: 200px;
       padding-right: 100px; } }
   @media screen and (min-width: 720px) and (max-width: 1024px) {
-    .section {
+    .section, .section-d {
       padding-left: 40px;
       padding-right: 40px; } }
   @media screen and (max-width: 720px) {
-    .section {
+    .section, .section-d {
       padding-left: 20px;
       padding-right: 20px; } }
   @media screen and (min-width: 1400px) {
-    .section-menu {
+    .section-menu, .section-d-menu {
       padding-left: 200px; } }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
-    .section-menu {
+    .section-menu, .section-d-menu {
       padding-left: 100px; } }
+
+.section-d {
+  width: auto; }
 
 .news-slide__media img {
   height: 200px;
@@ -1084,6 +1087,14 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   .section-title--no-pad {
     margin-bottom: 0; }
 
+.section-d-title {
+  margin-top: 64px;
+  margin-bottom: 14px;
+  position: relative; }
+  .section-d-title__text {
+    font-size: 48px;
+    font-family: 'LatoBold'; }
+
 .section-text {
   font-size: 21px;
   font-family: 'LatoRegular';
@@ -1112,6 +1123,27 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   .section-text__wrapper {
     overflow: hidden;
     padding-bottom: 2px; }
+
+.place {
+  display: block;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-style: italic; }
+  .place__tag {
+    font-style: normal;
+    background-color: #efefef;
+    padding: 4px 8px; }
+
+.section-d-text {
+  font-size: 14px;
+  font-family: 'LatoRegular';
+  line-height: 1.8;
+  text-align: justify;
+  color: #3e3e3e;
+  max-width: 1200px; }
+  .section-d-text h3 {
+    margin-top: 24px;
+    margin-bottom: 12px; }
 
 .section-team p {
   margin: 0px;
