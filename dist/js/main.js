@@ -687,7 +687,7 @@ function init() {
       transparent: true,
   });
 
-  var sprite = new THREE.TextureLoader().load( 'dist/img/disc.png' );
+  var sprite = new THREE.TextureLoader().load( 'img/disc.png' );
   sprite.anisotropy = webGLRenderer.capabilities.getMaxAnisotropy();
   smaterial = new THREE.PointsMaterial({
     size: 2.9,
