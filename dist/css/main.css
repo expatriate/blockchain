@@ -1614,6 +1614,8 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     background-color: #979797;
     position: absolute;
     bottom: 0px; }
+  .input-holder.invalid .input-holder-line {
+    background-color: #ff0000; }
   @media screen and (max-width: 720px) {
     .input-holder {
       height: 40px;
@@ -1689,6 +1691,9 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
   cursor: inherit; }
+  .submit-wrapper input.sending {
+    opacity: .4;
+    pointer-events: none; }
   @media screen and (min-width: 1024px) and (max-width: 1400px) {
     .submit-wrapper input {
       font-size: 36px; } }

@@ -1410,6 +1410,12 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     position: absolute;
     bottom: 0px;
   }
+
+  &.invalid {
+    .input-holder-line {
+      background-color: #ff0000;
+    }
+  }
   @media screen and (max-width: 720px) {
     height: 40px;
     margin-bottom: 6px;
@@ -1476,6 +1482,11 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     transition: transform 1s ease;
     transform: translate(0, 0);
     cursor: inherit;
+
+    &.sending {
+      opacity: .4;
+      pointer-events: none;
+    }
 
     @media screen and (min-width: 1024px) and (max-width: 1400px) {
       font-size: 36px;

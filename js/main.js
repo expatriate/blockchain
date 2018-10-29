@@ -365,6 +365,27 @@ $(document).ready(function() {
     $('#menu').click();
   });
 
+  var canSend = true;
+  $('.js-animate-show-submit').on('click', function(e) {
+    $('.form-elements').find('input').each(function(index, item) {
+      if ($(item).val() == '') {
+        $(item).parent().addClass('invalid');
+        e.preventDefault();
+      }
+    });
+    if (!$('.form-elements').find('.input-holder.invalid').length) {
+      if (canSend) {
+        $(this).addClass('sending');
+        canSend = false;
+      } else {
+        e.preventDefault();
+      }
+    }
+  });
+
+  $('.form-elements').find('input').on('focusin', function(e) {
+    $(e.target).parent().removeClass('invalid')
+  });
 
   function startTeamAnimation() {
     $('#section-team-red').animate({ opacity: 1}, 1500, 
@@ -425,6 +446,8 @@ $(document).ready(function() {
     var inputs = $('#write-to-us').find('.js-animate-show-input input');
     inputs.css({bottom: '-50px'});
     els.find('.input-holder-line').css({width: 0});
+    canSend = true;
+    $('.sending').removeClass('sending');
 
     els.each(function(index, item) {
       $(item).find('input').animate({bottom: 0}, 200 * (index + 1)*2);
