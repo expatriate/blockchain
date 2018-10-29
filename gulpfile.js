@@ -34,7 +34,7 @@ gulp.task('styles', () => {
         .pipe($.sass())
         .pipe($.concat('main.css'))
         .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-        .pipe(gulp.dest('dist/styles'))
+        .pipe(gulp.dest('dist/css'))
 });
 
 // Copy all files at the root level (app)
