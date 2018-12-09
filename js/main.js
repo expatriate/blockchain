@@ -36,7 +36,7 @@ function renderteamQuadsGrid() {
       block += '</div>';
     }
     teamQuad.find('.section__wrapper').empty().html(block);
-    elWidth = '60%';
+    elWidth = '50%';
     teaQuadEls = $('.section-team-quad').find('.section-team-quad-el');
   }
   teaQuadEls.each(function(index, item) {
