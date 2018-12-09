@@ -1088,6 +1088,117 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   }
 }
 
+.section-team-quad {
+  .section__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    
+  }
+  .section-scroller {
+  }
+}
+
+.section-team-quad {
+    .fp-controlArrow.fp-prev {
+      left: 15px;
+      width: 0;
+      border-width: 38.5px 34px 38.5px 0;
+      border-color: transparent #a01d21 transparent transparent;
+  }
+}
+
+.section-team-quad {
+    .fp-controlArrow.fp-next {
+      right: 15px;
+      border-width: 38.5px 0 38.5px 34px;
+      border-color: transparent transparent transparent #a01d21;
+  }
+}
+
+.section-team-quad-el {
+  background-color: #aabbcc;
+  position: relative;
+
+  margin: 2px;
+
+
+  @media screen and (max-width: 720px) {
+    width: 60%;
+    left: 20%;
+  }
+      
+
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(160,29,33,.4);
+    transition: all 0.4s ease;
+
+    span {
+      position: absolute;
+      bottom: 0px;
+      padding:20px;
+      font-size: 17px;
+      color: #ffffff;
+      font-family: 'LatoRegular';
+      @media screen and (min-width: 1200px) and (max-width: 1400px) {
+        font-size: 15px;
+      }
+      @media screen and (min-width: 1024px) and (max-width: 1200px) {
+        font-size: 13px;
+      }
+      @media screen and (min-width: 720px) and (max-width: 1024px) {
+        font-size: 12px;
+      }
+      @media screen and (max-width: 720px) {
+        font-size: 12px;
+        line-height: 1.2;
+      }
+      @media screen and (max-width: 720px) and (max-height: 500px) {
+        font-size: 11px;
+      }
+
+      &.bold {
+        font-family: 'LatoBold';
+        background-color: rgba(160,29,33,1);
+      }
+    }
+
+    &:hover {
+      transition: all 0.4s ease;
+      opacity: 1;
+    }
+  }
+  &.clear {
+    background-color: rgba(160,29,33,1);
+  }
+  span.bold {
+    position: absolute;
+    bottom: 0px;
+    padding:20px;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: 'LatoBold';
+
+    @media screen and (min-width: 720px) and (max-width: 1024px) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: 720px) {
+      font-size: 12px;
+      line-height: 1.2;
+    }
+  }
+}
+
 .section-contact {
   p {
     margin: 0px;
@@ -1300,6 +1411,19 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
     @media screen and (min-width: 768px) and (max-width: 1024px) {
       top: 128px;
       left: -143px;
+    }
+  }
+  &__team {
+    top: 166px;
+    left: -22px;
+
+    @media screen and (min-width: 1024px) and (max-width: 1366px) {
+      top: 98px;
+      left: -29px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      top: 59px;
+      left: -52px;
     }
   }
   &__product {

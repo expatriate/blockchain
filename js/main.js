@@ -1,19 +1,67 @@
 var directionSlider, productSlider, newsSlider, maxOpened = 0, menuOpened = false;
+var resizeTimer;
 
 
 // Change this to get another twtr account
 var tweeterLink = 'bcs';
 
 
+function renderteamQuadsGrid() {
+  var teamQuad = $('.section-team-quad');
+  var teaQuadEls = $('.section-team-quad').find('.section-team-quad-el');
+
+  var elWidth = teamQuad.width() / 5 - 4;
+  var elHeight = (window.innerHeight - window.innerHeight / 100 * 30) / 3 - 4;
+
+  console.log(window.innerWidth)
+  console.log(elWidth)
+
+  if (window.innerWidth < 960 && window.innerWidth > 720) {
+    elWidth = teamQuad.width() / 3 - 4;
+    elHeight = (window.innerHeight - (window.innerHeight / 100) * 60) / 3 - 4;
+  }
+  if (window.innerWidth < 720) {
+    var temp = teamQuad.find('.section__wrapper');
+    elWidth = temp.width() - 50;
+    elHeight = (window.innerHeight - (window.innerHeight / 100) * 35) / 3 - 4;
+    var block = '';
+    var count = 0;
+    for(var i = 0; i < teaQuadEls.length / 3; i++) {
+      block += '<div class="horizontal-scrolling">';
+      for (var j = 0; j < 3; j++) {
+        if ($(teaQuadEls[count]).hasClass('clear')) {
+          block += '<div class="section-team-quad-el clear">' + $(teaQuadEls[count]).html() + '</div>';
+        } else {
+          block += '<div class="section-team-quad-el">' + $(teaQuadEls[count]).html() + '</div>';
+        }
+        count++;
+      }
+      block += '</div>';
+    }
+    teamQuad.find('.section__wrapper').empty().html(block);
+    elWidth = '60%';
+    teaQuadEls = $('.section-team-quad').find('.section-team-quad-el');
+  }
+  teaQuadEls.each(function(index, item) {
+    $(item).css({'width': elWidth, 'height': elHeight})
+  });
+}
+
 
 $(document).ready(function() {
+
+  if (window.innerWidth < 720) {
+    renderteamQuadsGrid();
+  }
 
   $('#fullpage').fullpage({
     menu: '#menu',
     fixedElements: '#menu, #header, #footer, .mail, .share, .follower, #mouse',
     licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-    anchors:['main', 'about', 'news', 'product', 'directions', 'team', 'contacts'],
+    anchors:['main', 'about', 'news', 'product', 'directions', 'team', 'teamquads', 'contacts'],
     recordHistory: false,
+    scrollHorizontally: true,
+    slideSelector: '.horizontal-scrolling',
 
     onLeave: function(origin, destination, direction) {
 
@@ -62,7 +110,7 @@ $(document).ready(function() {
         }
       }
 
-      // Team section
+      // Red/Grey section
       
       if (destination.index == 5) {
         if (maxOpened < 5) {
@@ -71,11 +119,25 @@ $(document).ready(function() {
         }
       }
 
+      // Team section
+      
+      if (destination.index == 6) {
+        if (maxOpened < 6) {
+          startTeamQuadAnimation();
+          maxOpened = 6;
+        }
+      }
+
 
       // Disable scroll on last slide
       if (destination.isLast) {
         $.fn.fullpage.setAllowScrolling(false);
         $('.mouse').hide();
+      }
+    },
+    afterRender: function(){
+      if (window.innerWidth > 720) {
+        renderteamQuadsGrid();
       }
     }
   });
@@ -87,13 +149,13 @@ $(document).ready(function() {
     customHeight = windowWidth;
   }
 
-  $('#stage').css({width: customHeight, height: customHeight})
+  $('#stage').css({width: customHeight, height: customHeight});
 
-/*  objectFit.polyfill({
+  objectFit.polyfill({
     selector: 'img', // this can be any CSS selector
     fittype: 'cover', // either contain, cover, fill or none
     disableCrossDomain: 'true' // either 'true' or 'false' to not parse external CSS files.
-  });*/
+  });
 
   var configList = {
     "profile": {"screenName": tweeterLink},
@@ -388,7 +450,8 @@ $(document).ready(function() {
   });
 
   function startTeamAnimation() {
-    $('#section-team-red').animate({ opacity: 1}, 1500, 
+    if (!$('#section-team-red').hasClass('animation-finished')) {
+      $('#section-team-red').animate({ opacity: 1}, 1500, 
         function() {
           $('#section-team-red').find('[style]').each(function(index, item) {
             $(item).animate({opacity:1}, 800 * (index + 1) + 500);
@@ -399,8 +462,14 @@ $(document).ready(function() {
               $(item1).animate({opacity:1}, 800 * (index1 + 1) + 500);
             });
           });
+          $('#section-team-red').addClass('animation-finished');
         }
       )
+    }
+  }
+
+  function startTeamQuadAnimation() {
+
   }
 
   function startMenuAnimation() {
@@ -429,6 +498,9 @@ $(document).ready(function() {
     if ($(block).hasClass('section-direction')) {
       $('#section-direction__slider').trigger('direction-animation');
     }
+    if ($(block).hasClass('section-direction')) {
+      startTeamAnimation();
+    }
 
     els.each(function(index, item) {
       setTimeout(function() {
@@ -437,7 +509,7 @@ $(document).ready(function() {
         } else {
           $(item).addClass('animated');
         }
-      }, 200 * (index + 1) * 2 )
+      }, 200 * (index + 1) * 2 );
     });
   }
 
@@ -960,18 +1032,24 @@ function onMouseDown( event ) {
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;   
 
 }
- function onWindowResize() {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-  camera.aspect = $('#stage').width()/ $('#stage').height();
-  camera.updateProjectionMatrix();
+function onWindowResize() {
 
-  var customHeight = $(window).height();
-  var windowWidth = $(window).width();
+  clearTimeout(resizeTimer);
 
-  if (windowWidth < customHeight) {
-    customHeight = windowWidth;
-  }
-  $('#stage').css({width: customHeight, height: customHeight})
-  webGLRenderer.setSize( customHeight, customHeight );
+  resizeTimer = setTimeout(function() {
+    renderteamQuadsGrid();
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+    camera.aspect = $('#stage').width()/ $('#stage').height();
+    camera.updateProjectionMatrix();
+
+    var customHeight = $(window).height();
+    var windowWidth = $(window).width();
+
+    if (windowWidth < customHeight) {
+      customHeight = windowWidth;
+    }
+    $('#stage').css({width: customHeight, height: customHeight})
+    webGLRenderer.setSize( customHeight, customHeight );
+  }, 100);
 }
