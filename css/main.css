@@ -688,7 +688,8 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
   @media screen and (max-width: 720px) {
     .section, .section-d {
       padding-left: 20px;
-      padding-right: 20px; } }
+      padding-right: 20px;
+      padding-top: 20px; } }
   @media screen and (min-width: 1400px) {
     .section-menu, .section-d-menu {
       padding-left: 200px; } }
