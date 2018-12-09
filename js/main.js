@@ -13,11 +13,8 @@ function renderteamQuadsGrid() {
   var elWidth = teamQuad.width() / 5 - 4;
   var elHeight = (window.innerHeight - window.innerHeight / 100 * 30) / 3 - 4;
 
-  console.log(window.innerWidth)
-  console.log(elWidth)
-
   if (window.innerWidth < 960 && window.innerWidth > 720) {
-    elWidth = teamQuad.width() / 3 - 4;
+    elWidth = teamQuad.width() / 5 - 4;
     elHeight = (window.innerHeight - (window.innerHeight / 100) * 60) / 3 - 4;
   }
   if (window.innerWidth < 720) {

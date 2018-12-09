@@ -1100,19 +1100,22 @@ a:not(.no-border):not([data-scribe="element:user_link"]) {
 }
 
 .section-team-quad {
-    .fp-controlArrow.fp-prev {
-      left: 15px;
-      width: 0;
-      border-width: 38.5px 34px 38.5px 0;
-      border-color: transparent #a01d21 transparent transparent;
+  .fp-controlArrow.fp-prev {
+    right: 15px;
+    border-width: 0px;
+    background-image: url(../img/left-nav.svg);
+    width: 25px;
+    height: 70px;
   }
 }
 
 .section-team-quad {
-    .fp-controlArrow.fp-next {
-      right: 15px;
-      border-width: 38.5px 0 38.5px 34px;
-      border-color: transparent transparent transparent #a01d21;
+  .fp-controlArrow.fp-next {
+    right: 15px;
+    border-width: 0px;
+    background-image: url(../img/right-nav.svg);
+    width: 25px;
+    height: 70px;
   }
 }
 
