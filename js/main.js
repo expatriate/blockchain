@@ -3,7 +3,7 @@ var resizeTimer;
 
 
 // Change this to get another twtr account
-var tweeterLink = 'bcs';
+var tweeterLink = 'WorldBcs';
 
 
 function renderteamQuadsGrid() {
